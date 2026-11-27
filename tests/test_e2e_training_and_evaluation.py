@@ -5,12 +5,12 @@ import pandas as pd
 import pytest
 import torch
 
-from toxifusionnet.config import Config
-from toxifusionnet.data.dataset import HateSarcasmDataset, make_collate
-from toxifusionnet.data.grouped_splits import normalize_ocr_text
-from toxifusionnet.data.schema import build_canonical
-from toxifusionnet.experiments.cv import CANONICAL_FOLD_CACHE_SHA256, validate_fold_cache, validate_fold_cache_checksum
-from toxifusionnet.labels import (
+from sarc_fusenet.config import Config
+from sarc_fusenet.data.dataset import HateSarcasmDataset, make_collate
+from sarc_fusenet.data.grouped_splits import normalize_ocr_text
+from sarc_fusenet.data.schema import build_canonical
+from sarc_fusenet.experiments.cv import CANONICAL_FOLD_CACHE_SHA256, validate_fold_cache, validate_fold_cache_checksum
+from sarc_fusenet.labels import (
     DEFAULT_TARGET_LABELS,
     HATE_LABELS,
     IGNORE_INDEX,
@@ -20,11 +20,11 @@ from toxifusionnet.labels import (
     TASKS,
     label_to_id,
 )
-from toxifusionnet.models.encoder import build_encoder_and_tokenizer
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
-from toxifusionnet.preprocessing.normalize import TextNormalizer
-from toxifusionnet.training.metrics import evaluate_predictions, task_metrics_from_arrays
+from sarc_fusenet.models.encoder import build_encoder_and_tokenizer
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.training.metrics import evaluate_predictions, task_metrics_from_arrays
 
 
 DATA_DIR = Path("data/processed")
@@ -309,7 +309,7 @@ def test_training_pipeline_learns_tiny_synthetic_pattern():
 
     words_corpus = [s["text"].split() for s in synthetic_samples]
     enc, tok = build_encoder_and_tokenizer(cfg, words_corpus)
-    model = ToxiFusionNet(enc, cfg)
+    model = SARCFuseNet(enc, cfg)
     model.train()
 
     norm = TextNormalizer()
