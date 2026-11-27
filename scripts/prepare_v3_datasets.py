@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproducible generation and verification of derived v3 datasets for ToxiFusionNet.
+"""Reproducible generation and verification of derived v3 datasets for SARCFuseNet.
 
 Generates:
 1. data/processed/hot_gold_only.csv:
