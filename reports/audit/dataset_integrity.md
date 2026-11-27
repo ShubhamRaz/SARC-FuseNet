@@ -4,13 +4,13 @@
 
 ## 1. Corpus Scale & Component Verification
 
-The canonical unified dataset file [`data/processed/combined_all_3_datasets.csv`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/toxifusionnet/toxifusionnet/data/processed/combined_all_3_datasets.csv) was programmatically audited row-by-row.
+The canonical unified dataset file [`data/processed/combined_all_3_datasets.csv`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/sarc_fusenet/sarc_fusenet/data/processed/combined_all_3_datasets.csv) was programmatically audited row-by-row.
 
 ### Measured Size & Composition
 - **Total Physical Rows:** Exactly **56,907** rows.
 - **Unique Texts:** **56,799** unique texts ($108$ duplicate texts, $0.19\%$ redundancy).
 - **File Size on Disk:** $15,601,048$ bytes ($15.6$ MB).
-- **Metadata Configuration:** [`data/processed/combined_all_3_datasets.meta.json`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/toxifusionnet/toxifusionnet/data/processed/combined_all_3_datasets.meta.json).
+- **Metadata Configuration:** [`data/processed/combined_all_3_datasets.meta.json`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/sarc_fusenet/sarc_fusenet/data/processed/combined_all_3_datasets.meta.json).
 
 ```
 Total Corpus: 56,907 Rows
