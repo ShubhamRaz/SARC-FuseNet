@@ -3,10 +3,10 @@ import json
 import pandas as pd
 import pytest
 
-from toxifusionnet.baselines.classical import run_baselines
-from toxifusionnet.inference.pipeline import ToxiFusionPipeline
-from toxifusionnet.robustness.evaluate import evaluate_robustness
-from toxifusionnet.robustness.perturbations import PERTURBATIONS
+from sarc_fusenet.baselines.classical import run_baselines
+from sarc_fusenet.inference.pipeline import SARCFusePipeline
+from sarc_fusenet.robustness.evaluate import evaluate_robustness
+from sarc_fusenet.robustness.perturbations import PERTURBATIONS
 
 
 def test_training_artifacts(tiny_run):
@@ -17,7 +17,7 @@ def test_training_artifacts(tiny_run):
 
 
 def test_pipeline_output_follows_flow_chart(tiny_run):
-    pipe = ToxiFusionPipeline.from_run(tiny_run)
+    pipe = SARCFusePipeline.from_run(tiny_run)
     r = pipe.predict("Wah wah, us dharm ke log to genius hain, ekdum bekaar hain lol 🙄")
     assert {"text", "normalized_text", "language", "sarcasm", "hate", "target", "severity", "rationale"} <= set(r)
     r2 = pipe.predict(["aaj ka match bahut accha tha yaar", "yeh restaurant theek-thaak hai"])
@@ -27,7 +27,7 @@ def test_pipeline_output_follows_flow_chart(tiny_run):
 
 
 def test_pipeline_batch_equals_single(tiny_run):
-    pipe = ToxiFusionPipeline.from_run(tiny_run)
+    pipe = SARCFusePipeline.from_run(tiny_run)
     t = ["bijli ka bill kaafi badhiya hai", "Great job, aurtein to mahaan hain lol"]
     a = pipe.predict_proba(t)["hate"][:, 1]
     b = [pipe.predict_proba([x])["hate"][0, 1] for x in t]
@@ -38,7 +38,7 @@ def test_robustness_and_perturbations(tiny_run, synth_df):
     import random
     for name, fn in PERTURBATIONS.items():
         assert isinstance(fn("Wah bahut accha hai yaar lol", random.Random(0)), str), name
-    pipe = ToxiFusionPipeline.from_run(tiny_run)
+    pipe = SARCFusePipeline.from_run(tiny_run)
     res = evaluate_robustness(pipe, synth_df[synth_df.split == "test"].head(60))
     assert len(res) == len(PERTURBATIONS) + 1 and res.loc[0, "flip_rate"] == 0
 
@@ -52,8 +52,8 @@ def test_baselines(synth_df):
 
 def test_api(tiny_run, monkeypatch):
     from fastapi.testclient import TestClient
-    monkeypatch.setenv("TOXIFUSION_RUN_DIR", str(tiny_run))
-    from toxifusionnet.app import api
+    monkeypatch.setenv("SARC_FUSENET_RUN_DIR", str(tiny_run))
+    from sarc_fusenet.app import api
     api.get_pipeline.cache_clear()
     c = TestClient(api.app)
     assert c.get("/health").json() == {"status": "ok"}
@@ -64,10 +64,10 @@ def test_api(tiny_run, monkeypatch):
 
 def test_from_pretrained_directory_path(tmp_path, synth_df):
     """The real-encoder route (AutoTokenizer/AutoModel.from_pretrained) works with a locally saved checkpoint."""
-    from toxifusionnet.config import Config, load_config
-    from toxifusionnet.models.encoder import build_encoder_and_tokenizer
-    from toxifusionnet.preprocessing.normalize import TextNormalizer
-    from toxifusionnet.training.trainer import train_run
+    from sarc_fusenet.config import Config, load_config
+    from sarc_fusenet.models.encoder import build_encoder_and_tokenizer
+    from sarc_fusenet.preprocessing.normalize import TextNormalizer
+    from sarc_fusenet.training.trainer import train_run
     norm = TextNormalizer()
     enc, tok = build_encoder_and_tokenizer(Config.wrap({"encoder_name": "tiny", "tiny_hidden": 32, "tiny_layers": 1}),
                                            [norm(t).words for t in synth_df.text])
@@ -75,11 +75,11 @@ def test_from_pretrained_directory_path(tmp_path, synth_df):
     cfg = load_config("configs/smoke_test.yaml", [f"model.encoder_name={tmp_path / 'ckpt'}", "train.epochs=1"])
     res = train_run(cfg, synth_df, tmp_path / "run")
     assert res["test"]["hate"]["n"] > 0
-    assert ToxiFusionPipeline.from_run(tmp_path / "run").predict("tum log bekaar ho")["hate"]["label"] in ("hate", "non_hate")
+    assert SARCFusePipeline.from_run(tmp_path / "run").predict("tum log bekaar ho")["hate"]["label"] in ("hate", "non_hate")
 
 
 def test_config_extends_chain(tmp_path):
-    from toxifusionnet.config import load_config
+    from sarc_fusenet.config import load_config
     (tmp_path / "default.yaml").write_text("a: 1\nb: {x: 1, y: 2}\n")
     (tmp_path / "mid.yaml").write_text("b: {y: 20}\nc: 3\n")
     (tmp_path / "top.yaml").write_text("extends: mid.yaml\nc: 30\n")
