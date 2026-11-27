@@ -487,7 +487,7 @@ def _format_publication_markdown_report(full_res: dict) -> str:
     tasks = ["hate", "sarcasm", "target", "severity"]
 
     lines = [
-        "# ToxiFusionNet: Publication-Grade Statistical Evaluation Report",
+        "# SARC-FuseNet: Publication-Grade Statistical Evaluation Report",
         "",
         f"**Protocol:** Grouped 5-Fold Cross-Validation on MultiBully ($N = {meta['eval_instances']:,}$ held-out test predictions).  ",
         f"**Inferential Tests:** Paired cluster permutation test ($B = {meta['n_permutations']:,}$ permutations, two-sided, plus-one corrected).  ",
