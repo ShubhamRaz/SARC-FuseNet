@@ -1,4 +1,4 @@
-"""Training / evaluation loops for ToxiFusionNet."""
+"""Training / evaluation loops for SARCFuseNet."""
 from __future__ import annotations
 
 import json
@@ -19,7 +19,7 @@ from ..data.dataset import HateSarcasmDataset, make_collate
 from ..labels import IGNORE_INDEX, LABEL_SPACES, TASKS, apply_label_config
 from ..models.encoder import build_encoder_and_tokenizer
 from ..models.losses import MultiTaskLoss
-from ..models.toxifusionnet import ToxiFusionNet
+from ..models.toxifusionnet import SARCFuseNet
 from ..preprocessing.normalize import TextNormalizer
 from .balancing import compute_fold_class_weights, compute_task_class_weights
 from .metrics import evaluate_predictions, flatten_metrics
@@ -43,7 +43,7 @@ def class_weights(df: pd.DataFrame, task: str, mode: str) -> list[float] | None:
 
 
 @torch.no_grad()
-def predict_loader(model: ToxiFusionNet, loader: DataLoader, device) -> dict:
+def predict_loader(model: SARCFuseNet, loader: DataLoader, device) -> dict:
     model.eval()
     probs: dict[str, list] = {t: [] for t in model.tasks}
     idxs, gates = [], []
@@ -126,7 +126,7 @@ def train_run(cfg, df: pd.DataFrame, run_dir: str | Path, full_data: bool = Fals
     tokenizer.save_pretrained(run_dir / "tokenizer")
     encoder.config.save_pretrained(run_dir / "encoder_config")
 
-    model = ToxiFusionNet(encoder, cfg.model).to(device)
+    model = SARCFuseNet(encoder, cfg.model).to(device)
     use_clip = bool(getattr(model, "use_clip", False))
     image_proc = getattr(model, "clip_processor", None) if use_clip else None
     image_dir = cfg.data.get("image_dir", "data/raw/bully_data/bully_data")
