@@ -1,4 +1,4 @@
-"""Tests for L3Cube HingRoBERTa integration into ToxiFusionNet.
+"""Tests for L3Cube HingRoBERTa integration into SARCFuseNet.
 
 Covers:
 1. Encoder selection and configuration parsing.
@@ -21,16 +21,16 @@ import torch
 import yaml
 from transformers import AutoConfig, AutoModel, AutoTokenizer, BertConfig, BertModel
 
-from toxifusionnet.config import Config, load_config
-from toxifusionnet.experiments.cv import (
+from sarc_fusenet.config import Config, load_config
+from sarc_fusenet.experiments.cv import (
     ALLOWED_COMBINED_FOLD_CACHE_SHAS,
     ALLOWED_FOLD_CACHE_SHAS,
     compute_normalized_fold_cache_sha256,
     validate_fold_cache_checksum,
 )
-from toxifusionnet.models.encoder import build_encoder_and_tokenizer, rebuild_encoder_from_dir
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
+from sarc_fusenet.models.encoder import build_encoder_and_tokenizer, rebuild_encoder_from_dir
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
 
 
 HING_ROBERTA_NAME = "l3cube-pune/hing-roberta"
@@ -68,7 +68,7 @@ def test_hingroberta_config_parsing():
 
 
 def test_dynamic_hidden_dimension_compatibility():
-    """Verify ToxiFusionNet dynamically inspects encoder.config.hidden_size and adapts all 4 heads."""
+    """Verify SARCFuseNet dynamically inspects encoder.config.hidden_size and adapts all 4 heads."""
     for dim in [64, 128, 768]:
         dummy_cfg = BertConfig(
             vocab_size=100,
@@ -90,7 +90,7 @@ def test_dynamic_hidden_dimension_compatibility():
             "cue_hidden": 16,
             "use_clip": False,
         }
-        model = ToxiFusionNet(dummy_enc, model_cfg)
+        model = SARCFuseNet(dummy_enc, model_cfg)
         assert model.hate_pool.proj.in_features == dim
         assert model.fusion.gate.in_features == 2 * dim + 1
         assert model.heads["hate"][0].in_features == dim
@@ -166,7 +166,7 @@ def test_hingroberta_checkpoint_save_reload_parity(tmp_path: Path):
         "cue_hidden": 16,
         "use_clip": False,
     }
-    model = ToxiFusionNet(enc, cfg).eval()
+    model = SARCFuseNet(enc, cfg).eval()
 
     # Save components
     run_dir = tmp_path / "test_run"
@@ -177,7 +177,7 @@ def test_hingroberta_checkpoint_save_reload_parity(tmp_path: Path):
 
     # Reload from saved directory
     rebuilt_enc, rebuilt_tok = rebuild_encoder_from_dir(run_dir)
-    rebuilt_model = ToxiFusionNet(rebuilt_enc, cfg).eval()
+    rebuilt_model = SARCFuseNet(rebuilt_enc, cfg).eval()
     ckpt = torch.load(run_dir / "model.pt", map_location="cpu")
     rebuilt_model.load_state_dict(ckpt["state_dict"])
 
@@ -210,7 +210,7 @@ def test_hingroberta_smoke_optimizer_step():
         "cue_hidden": 16,
         "use_clip": False,
     }
-    model = ToxiFusionNet(enc, cfg)
+    model = SARCFuseNet(enc, cfg)
     opt = torch.optim.AdamW(model.parameters(), lr=1e-5)
     criterion = MultiTaskLoss(model.tasks, weighting="fixed", weights={t: 1.0 for t in model.tasks})
 
