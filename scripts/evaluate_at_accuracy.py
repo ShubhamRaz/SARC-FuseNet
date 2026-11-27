@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Evaluate ToxiFusionNet models to reach target accuracy (e.g. >= 0.85).
+"""Evaluate SARCFuseNet models to reach target accuracy (e.g. >= 0.85).
 
 Computes:
 1. Selective prediction operating points (confident triage) where accuracy >= target_acc.
