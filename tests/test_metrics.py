@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 
-from toxifusionnet.labels import IGNORE_INDEX
-from toxifusionnet.training.metrics import end_to_end_metrics, evaluate_predictions, sarcasm_subset_metrics
-from toxifusionnet.training.stats import mcnemar, paired_bootstrap
+from sarc_fusenet.labels import IGNORE_INDEX
+from sarc_fusenet.training.metrics import end_to_end_metrics, evaluate_predictions, sarcasm_subset_metrics
+from sarc_fusenet.training.stats import mcnemar, paired_bootstrap
 
 
 def frame():
