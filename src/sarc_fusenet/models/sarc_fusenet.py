@@ -156,5 +156,3 @@ class SARCFuseNet(nn.Module):
 
 
 # Backwards-compatible alias for existing notebooks, scripts, and checkpoints.
-# New code should use SARCFuseNet.
-SARCFuseNet = SARCFuseNet
