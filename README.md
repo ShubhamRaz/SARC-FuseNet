@@ -1,8 +1,8 @@
-# ToxiFusionNet 🛡️
+# SARC-FuseNet 🛡️
 
-**Sarcasm-Aware Multi-Task Transformer for Hate Speech Detection in Hindi-English (Hinglish) Code-Mixed Text.**
+**Sarcasm-Aware Residual Context Fusion Network for Hindi–English (Hinglish) Code-Mixed Hate Speech, Target, and Severity Detection.**
 
-ToxiFusionNet detects hate speech—specifically identifying nuanced and covert *sarcastic hate*—and simultaneously predicts the **target** and **severity** level of each detected attack with token-level rationales and explainability.
+SARC-FuseNet detects hate speech—specifically identifying nuanced and covert *sarcastic hate*—and simultaneously predicts the **target** and **severity** level of each detected attack with token-level rationales and explainability.
 
 ```
                           ┌────────────────────────┐
@@ -43,7 +43,7 @@ ToxiFusionNet detects hate speech—specifically identifying nuanced and covert 
 
 ## Benchmark Results (Stage 3 Tri-Dataset Benchmark)
 
-ToxiFusionNet was trained and evaluated on the unified **56,907-post multi-task benchmark**, integrating multimodal meme texts from **MultiBully** ($5,718$), real-world code-mixed tweets from **HOT** ($3,189$), and the extensive **Hinglish Toxic Hate corpus** ($48,000$).
+SARC-FuseNet was trained and evaluated on the unified **56,907-post multi-task benchmark**, integrating multimodal meme texts from **MultiBully** ($5,718$), real-world code-mixed tweets from **HOT** ($3,189$), and the extensive **Hinglish Toxic Hate corpus** ($48,000$).
 
 ### Official Evaluation Scorecard (Held-Out Test Set, $N = 8,513$ posts)
 
@@ -92,7 +92,7 @@ The unified **56,907** row corpus combines three curated sources:
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 
-# Install toxifusionnet package in editable mode
+# Install the SARC-FuseNet package in editable mode
 pip install -e .
 ```
 
@@ -166,7 +166,7 @@ toxifusionnet/
 │   └── audit_by_source.py              # Disaggregated source breakdown script
 ├── src/
 │   └── toxifusionnet/                  # Core package modules
-│       ├── models/                     # ToxiFusionNet architecture & losses
+│       ├── models/                     # SARC-FuseNet architecture & losses
 │       ├── preprocessing/              # Normalization & language identification
 │       └── training/                   # Trainer, class-balancing & metrics
 ├── STAGE_3_FINAL_REPORT.md             # Comprehensive scientific report
