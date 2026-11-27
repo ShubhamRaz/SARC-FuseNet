@@ -13,7 +13,7 @@
 > Always link your runs directory to a persistent network volume (e.g. `/workspace`, `/mnt/storage`, or an S3/GCS bucket).
 
 ### Directory Configuration
-- **Repository Location:** `/workspace/sarc_fusenet`
+- **Repository Location:** `/workspace/SARC-FuseNet`
 - **Persistent Data & Artifact Store:** `/workspace/persistent_storage`
 - **Scratch / Temp Directory:** `/tmp/scratch`
 
@@ -29,7 +29,7 @@ cd /workspace
 
 # Clone the repository
 git clone https://github.com/ShubhamRaz/SARC-FuseNet.git
-cd sarc_fusenet
+cd SARC-FuseNet
 
 # Checkout the published reproducible release branch
 git checkout main
@@ -169,8 +169,8 @@ cp -r results/v3_journal_final /workspace/persistent_storage/published_results/$
 cp data/manifests/*.json /workspace/persistent_storage/published_results/$(date +%Y%m%d)_dgx_run/
 
 # 2. If using S3 / GCS, sync immediately
-# aws s3 sync /workspace/persistent_storage/ s3://my-sarc_fusenet-bucket/runs/ --exclude "*.tmp"
-# rsync -avz /workspace/persistent_storage/ user@headnode:/shared/sarc_fusenet_results/
+# aws s3 sync /workspace/persistent_storage/ s3://my-sarc-fusenet-bucket/runs/ --exclude "*.tmp"
+# rsync -avz /workspace/persistent_storage/ user@headnode:/shared/sarc-fusenet-results/
 
 echo "Synchronization complete. Pod may now be safely decommissioned."
 ```
