@@ -32,7 +32,7 @@ from ..training.stats import (
     class_level_metrics
 )
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 def _resolve_text_groups(df: pd.DataFrame, multibully_path: str | Path = "data/processed/multibully.csv") -> np.ndarray:
@@ -716,7 +716,7 @@ def _format_publication_markdown_report(full_res: dict) -> str:
         f"- **Target Head Invariance:** Target classification showed no statistically significant difference ($\\Delta = {target_delta:+.4f}$, raw $p = {target_raw_p}$, Holm $p = {target_holm_p}$).",
         "",
         "---",
-        "*Report generated automatically by `toxifusionnet.experiments.compare.run_publication_analysis` with reproducible cluster permutations and family-wise error control.*"
+        "*Report generated automatically by `sarc_fusenet.experiments.compare.run_publication_analysis` with reproducible cluster permutations and family-wise error control.*"
     ])
 
     return "\n".join(lines)
