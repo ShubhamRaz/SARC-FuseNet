@@ -11,7 +11,7 @@ emoji>=2.0
 tqdm
 matplotlib
 # optional
-lime            # LIME explanations (toxifusion explain --lime)
+lime            # LIME explanations (python -m sarc_fusenet.cli explain --lime)
 fastapi         # REST API
 uvicorn
 httpx           # FastAPI test client
