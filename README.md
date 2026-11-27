@@ -101,7 +101,7 @@ pip install -e .
 Test the production model using the CLI:
 
 ```powershell
-python -m toxifusionnet.cli predict `
+python -m sarc_fusenet.cli predict `
   --run-dir runs/exp_tri_dataset_xlmr `
   --text "Congrats bro, strict diet ke beech spicy golgappe ne prove kar diya ki hope pe world kayam hai" `
          "Saale ye lobby ke log itna disgusting aur pathetic harkat karta hai" `
@@ -135,7 +135,7 @@ The full test predictions, validation predictions, and training history curves a
 To re-run training on the unified tri-dataset from scratch:
 
 ```powershell
-python -m toxifusionnet.cli train --config configs/combined_all_3_datasets.yaml
+python -m sarc_fusenet.cli train --config configs/combined_all_3_datasets.yaml
 ```
 
 The configuration automatically engages GPU acceleration (CUDA with FP16 AMP) and saves checkpoints and evaluation metrics to `runs/exp_tri_dataset_xlmr/`.
@@ -145,7 +145,7 @@ The configuration automatically engages GPU acceleration (CUDA with FP16 AMP) an
 ## Directory Structure
 
 ```
-toxifusionnet/
+sarc_fusenet/
 ├── configs/
 │   └── combined_all_3_datasets.yaml    # Production training configuration
 ├── data/
@@ -165,7 +165,7 @@ toxifusionnet/
 │   ├── audit_metrics.py                # Reproducible test metrics verification script
 │   └── audit_by_source.py              # Disaggregated source breakdown script
 ├── src/
-│   └── toxifusionnet/                  # Core package modules
+│   └── sarc_fusenet/                  # Core package modules
 │       ├── models/                     # SARC-FuseNet architecture & losses
 │       ├── preprocessing/              # Normalization & language identification
 │       └── training/                   # Trainer, class-balancing & metrics
