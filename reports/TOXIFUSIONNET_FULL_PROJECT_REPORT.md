@@ -338,7 +338,7 @@ The delivery package has been completely cleaned, audited, and committed to git 
 
 ```
 Toxic/
-├── TOXIFUSIONNET_FULL_PROJECT_REPORT.md           # Full technical report
+├── SARC-FUSENET_FULL_PROJECT_REPORT.md           # Full technical report
 ├── STAGE_3_FINAL_REPORT.md                        # Summary report
 ├── SARC-FuseNet_Project_Report.docx              # Project narrative document
 └── toxifusionnet/
@@ -354,7 +354,7 @@ Toxic/
         │       └── combined_all_3_datasets.meta.json
         ├── reports/
         │   ├── STAGE_3_FINAL_REPORT.md            # Comprehensive research report
-        │   ├── TOXIFUSIONNET_FULL_PROJECT_REPORT.md # Full unabridged technical report
+        │   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md # Full unabridged technical report
         │   ├── toxifusionnet_final_tri_dataset_evaluation.txt # Formatted evaluation dump
         │   └── audit/                             # Complete 6-part audit suite
         ├── runs/
