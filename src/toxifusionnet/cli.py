@@ -1,4 +1,4 @@
-"""Command line interface:  ``toxifusion <command> [options]``  (or ``python -m toxifusionnet.cli ...``)."""
+"""Command line interface:  ``sarc-fusenet <command> [options]``  (or ``python -m sarc_fusenet.cli ...``)."""
 from __future__ import annotations
 
 import argparse
@@ -87,7 +87,7 @@ def cmd_train(args):
 
 
 def _pipeline(args):
-    from .inference.pipeline import ToxiFusionPipeline
+    from .inference.pipeline import SARCFusePipeline
     margin = getattr(args, "confidence_margin", 0.0)
     target_acc = getattr(args, "target_accuracy", None)
     if target_acc is not None:
@@ -97,7 +97,7 @@ def _pipeline(args):
             margin = 0.25
         elif target_acc >= 0.80:
             margin = 0.15
-    return ToxiFusionPipeline.from_run(args.run_dir, device=args.device, confidence_margin=margin)
+    return SARCFusePipeline.from_run(args.run_dir, device=args.device, confidence_margin=margin)
 
 
 def cmd_predict(args):
@@ -202,8 +202,8 @@ def cmd_figures(args):
 def cmd_serve(args):
     import os
     import uvicorn
-    os.environ["TOXIFUSION_RUN_DIR"] = args.run_dir
-    uvicorn.run("toxifusionnet.app.api:app", host=args.host, port=args.port)
+    os.environ["SARC_FUSENET_RUN_DIR"] = args.run_dir
+    uvicorn.run("sarc_fusenet.app.api:app", host=args.host, port=args.port)
 
 
 def cmd_describe(args):
@@ -231,7 +231,7 @@ def cmd_cv(args):
 
 
 def build_parser():
-    p = argparse.ArgumentParser(prog="toxifusion", description=__doc__)
+    p = argparse.ArgumentParser(prog="sarc-fusenet", description=__doc__)
     sub = p.add_subparsers(dest="cmd", required=True)
 
     def add_cfg(sp):
