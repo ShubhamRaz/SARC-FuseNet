@@ -1,4 +1,4 @@
-"""Diagnostic analysis of ToxiFusionNet model predictions (E1c, E1d, E6b) and baselines.
+"""Diagnostic analysis of SARCFuseNet model predictions (E1c, E1d, E6b) and baselines.
 
 Computes comprehensive diagnostic metrics:
 - Accuracy, Macro-F1, balanced accuracy, and per-class precision/recall/F1/support
@@ -36,7 +36,7 @@ from ..labels import (
 )
 from ..training.metrics import end_to_end_metrics, evaluate_predictions
 
-log = logging.getLogger("toxifusionnet.analysis.diagnostic")
+log = logging.getLogger("sarc_fusenet.analysis.diagnostic")
 
 
 def compute_binary_threshold_fractions(
@@ -529,7 +529,7 @@ def _format_diagnostic_markdown_report(report: dict[str, Any]) -> str:
     tasks = ["hate", "sarcasm", "target", "severity"]
 
     lines = [
-        "# ToxiFusionNet: Multi-Task Diagnostic Analysis Report",
+        "# SARCFuseNet: Multi-Task Diagnostic Analysis Report",
         "",
         "This report establishes the baseline diagnostic profile for **E1c** (unweighted control), **E1d** (per-task square-root class weighted), **E6b** (combined gold auxiliary weighted), and the classical **TF-IDF + Logistic Regression** baseline across all four tasks on MultiBully ($N = 5,718$ held-out test predictions).",
         "",
@@ -710,7 +710,7 @@ def _format_diagnostic_markdown_report(report: dict[str, Any]) -> str:
     lines.extend([
         "",
         "---",
-        "*Report generated automatically by `toxifusionnet.analysis.diagnostic.run_full_diagnostic_analysis`.*"
+        "*Report generated automatically by `sarc_fusenet.analysis.diagnostic.run_full_diagnostic_analysis`.*"
     ])
 
     return "\n".join(lines)
