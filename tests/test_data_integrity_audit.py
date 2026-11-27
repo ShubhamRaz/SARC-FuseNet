@@ -19,10 +19,10 @@ import pandas as pd
 import pytest
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-from toxifusionnet.data.grouped_splits import normalize_ocr_text
-from toxifusionnet.data.schema import build_canonical, load_schema
-from toxifusionnet.labels import IGNORE_INDEX, label_to_id
-from toxifusionnet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.data.grouped_splits import normalize_ocr_text
+from sarc_fusenet.data.schema import build_canonical, load_schema
+from sarc_fusenet.labels import IGNORE_INDEX, label_to_id
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
 
 DATA_DIR = Path("data/processed")
 

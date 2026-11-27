@@ -9,7 +9,7 @@ We inspected the underlying PyTorch source code in [`src/sarc_fusenet/models/sar
 | Documented Component | Claimed Description in Reports | Actual Implementation in Code | Verification Status | Correction Required |
 | :--- | :--- | :--- | :---: | :--- |
 | **Encoder Backbone** | Multilingual XLM-RoBERTa (`xlm-roberta-base`) | `AutoModel.from_pretrained("xlm-roberta-base")` | **VERIFIED ✅** | None |
-| **Pragmatic Surface Cues** | Vector of emojis, caps, punctuation | `CUE_DIM = 7`, `cue_proj = nn.Linear(7, 32)` | **VERIFIED ✅** | None |
+| **Pragmatic Surface Cues** | Vector of emojis, caps, punctuation | `CUE_DIM = len(CUE_NAMES) = 16`, `cue_proj[0] = nn.Linear(16, 32)` | **VERIFIED ✅** | None |
 | **Sarcasm Branch** | Dedicated branch predicting sarcasm | `sarc_mlp` + `sarc_out` predicting binary logits | **VERIFIED ✅** | None |
 | **Fusion Mechanism** | **"Gated Sarcasm Cross-Attention Fusion"** | **Gated Residual Fusion Block** with LayerNorm | **CONTRADICTED ❌** | **Rename from "Cross-Attention" to "Gated Residual Fusion"** |
 | **Sarcasm Influence on Hate**| Conditioned gate modulates hate logits | $g = \sigma(W_g [h; s; P_s])$, $f = \text{LN}(h + g \odot \tanh(W s))$ | **VERIFIED ✅** | None |
@@ -62,7 +62,7 @@ Trainable Parameters                : 281,996,332 parameters (100.0%)
 
 - **Encoder Hidden Dimension ($d$):** 768
 - **Head Hidden Dimension:** 256
-- **Surface Cue Dimension:** 7
+- **Surface Cue Dimension:** 16
 - **Dropout:** 0.10
 
 ---

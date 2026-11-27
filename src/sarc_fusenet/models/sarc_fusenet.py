@@ -154,5 +154,3 @@ class SARCFuseNet(nn.Module):
             groups.append({"params": list(extra), "lr": lr_head, "weight_decay": 0.0})
         return groups
 
-
-# Backwards-compatible alias for existing notebooks, scripts, and checkpoints.
