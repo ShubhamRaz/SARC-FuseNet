@@ -1,7 +1,7 @@
 # SENSITIVITY schema: identical to schema_multibully.yaml but hate = Img-Text-Label (meme-level: image + text).
 # Official source: https://github.com/Jhaprince/MultiBully (annotation sheet "Cyberbully_corrected_emotion_sentiment.xlsx").
 # Kaggle copy: https://www.kaggle.com/datasets/pranee5/multi-bully  -- ASSUMED to be the same data; confirm with
-#   `toxifusion inspect --raw <file>` that the columns below exist (matching ignores case, spaces, hyphens, underscores).
+#   `sarc-fusenet inspect --raw <file>` that the columns below exist (matching ignores case, spaces, hyphens, underscores).
 #
 # Columns seen in the official sheet:  Img-Name | Img-Text | Img-Text-Label | Img-Label | Text-Label | Sentiment |
 #                                      Emotion | Sarcasm | Harmful-Score | Target | Doubtful
