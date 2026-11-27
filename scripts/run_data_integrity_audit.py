@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Comprehensive Data-Integrity Audit for ToxiFusionNet (MultiBully and HOT).
+"""Comprehensive Data-Integrity Audit for SARCFuseNet (MultiBully and HOT).
 
 Performs:
 1. Exact Data Provenance Audit (E1d, E6b, HOT file distinctions, file hashes).
@@ -36,7 +36,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import TfidfVectorizer
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
-log = logging.getLogger("toxifusionnet.audit")
+log = logging.getLogger("sarc_fusenet.audit")
 
 
 def compute_sha256(file_path: str | Path, normalize_crlf: bool = False) -> str:
@@ -288,9 +288,9 @@ def run_data_integrity_audit(
     out_p = root / out_dir
     out_p.mkdir(parents=True, exist_ok=True)
 
-    log.info("Starting ToxiFusionNet Data-Integrity Audit at %s...", root)
+    log.info("Starting SARCFuseNet Data-Integrity Audit at %s...", root)
 
-    from toxifusionnet.labels import TASKS, label_to_id, IGNORE_INDEX
+    from sarc_fusenet.labels import TASKS, label_to_id, IGNORE_INDEX
 
     # ---------------------------------------------------------
     # Part A: Exact Data Provenance & File Hashes
@@ -537,8 +537,8 @@ def run_data_integrity_audit(
     # ---------------------------------------------------------
     # Part D: Check Cross-Dataset Leakage
     # ---------------------------------------------------------
-    from toxifusionnet.data.grouped_splits import normalize_ocr_text
-    from toxifusionnet.preprocessing.normalize import TextNormalizer
+    from sarc_fusenet.data.grouped_splits import normalize_ocr_text
+    from sarc_fusenet.preprocessing.normalize import TextNormalizer
 
     normalizer = TextNormalizer()
     mb_norm_ocr = normalize_ocr_text(mb_df["text"])
@@ -823,7 +823,7 @@ def run_data_integrity_audit(
         csv_rows.append({
             "record_type": "audit_verdict",
             "section": sec,
-            "source": "ToxiFusionNet Audit",
+            "source": "SARCFuseNet Audit",
             "metric_or_task": f"Section {sec} Status",
             "total_rows": len(mb_df),
             "valid_gold": 0,
@@ -874,11 +874,11 @@ def _format_markdown_report(summary: Dict[str, Any]) -> str:
         verdict_prose = "Critical data-integrity invariants have been violated. Immediate remediation required."
 
     lines = [
-        "# ToxiFusionNet: MultiBully & HOT Data-Integrity Audit Report",
+        "# SARCFuseNet: MultiBully & HOT Data-Integrity Audit Report",
         "",
         f"**Audit Verdict:** `{overall_verd}`  ",
         f"**Evaluation Date:** `{summary['audit_timestamp']}`  ",
-        f"**Repository:** `https://github.com/ShubhamRaz/toxifusionnet`  ",
+        f"**Repository:** `https://github.com/ShubhamRaz/sarc_fusenet`  ",
         "",
         "---",
         "",
@@ -1028,7 +1028,7 @@ def _format_markdown_report(summary: Dict[str, Any]) -> str:
         "",
         "**Zero-Supervision Row Handling:**",
         "- In `hot_gold_only.csv`, 1,765 rows correspond to offensive tweets where hate is masked to `NaN` and all other heads are `NaN`.",
-        "- In `src/toxifusionnet/experiments/cv.py`, lines 123-137 automatically exclude these 1,765 zero-supervision rows upon loading.",
+        "- In `src/sarc_fusenet/experiments/cv.py`, lines 123-137 automatically exclude these 1,765 zero-supervision rows upon loading.",
         "- Exactly 1,424 valid human-gold hate rows are retained in the training pool.",
         "- On-disk files remain strictly untouched ($N = 3,189$).",
         "",
@@ -1112,14 +1112,14 @@ def _format_markdown_report(summary: Dict[str, Any]) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--repo-root", default=".", help="Root directory of toxifusionnet repository")
+    parser.add_argument("--repo-root", default=".", help="Root directory of sarc_fusenet repository")
     parser.add_argument("--out-dir", default="results/v3_journal_final/data_integrity_audit", help="Directory to save audit deliverables")
     args = parser.parse_args()
 
     summary = run_data_integrity_audit(repo_root=args.repo_root, out_dir=args.out_dir)
 
     print("\n=======================================================")
-    print(f"  TOXIFUSIONNET DATA INTEGRITY AUDIT VERDICT: {summary['overall_verdict']}")
+    print(f"  SARC-FUSENET DATA INTEGRITY AUDIT VERDICT: {summary['overall_verdict']}")
     print("=======================================================")
     print(f"Artifacts generated:")
     print(f"  - Markdown: {args.out_dir}/data_integrity_report.md")
