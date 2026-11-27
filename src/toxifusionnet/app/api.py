@@ -9,7 +9,7 @@ from pydantic import BaseModel, Field
 
 from ..inference.pipeline import ToxiFusionPipeline
 
-app = FastAPI(title="ToxiFusionNet", version="0.1.0",
+app = FastAPI(title="SARC-FuseNet", version="0.1.0",
               description="Sarcasm-aware hate speech detection for Hindi-English code-mixed text")
 
 
