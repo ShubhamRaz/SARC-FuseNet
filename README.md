@@ -59,7 +59,7 @@ SARC-FuseNet was trained and evaluated on the unified **56,907-post multi-task b
 
 *\*Note on Sarcasm Support: 118 posts in the HOT test set lacked sarcasm ground truth and were masked during evaluation ($N_{\text{evaluated}} = 8,395$).*
 
-*For complete training dynamics, cross-dataset split details, and ablation comparisons, see [STAGE_3_FINAL_REPORT.md](STAGE_3_FINAL_REPORT.md) and [TOXIFUSIONNET_FULL_PROJECT_REPORT.md](reports/TOXIFUSIONNET_FULL_PROJECT_REPORT.md).*
+*For complete training dynamics, cross-dataset split details, and ablation comparisons, see [STAGE_3_FINAL_REPORT.md](STAGE_3_FINAL_REPORT.md) and [SARC-FUSENET_FULL_PROJECT_REPORT.md](reports/SARC-FUSENET_FULL_PROJECT_REPORT.md).*
 
 ---
 
@@ -159,7 +159,7 @@ toxifusionnet/
 │       └── preds_test.csv              # Test prediction dump (8,513 rows)
 ├── reports/
 │   ├── STAGE_3_FINAL_REPORT.md         # Comprehensive scientific evaluation report
-│   ├── TOXIFUSIONNET_FULL_PROJECT_REPORT.md # Unabridged full project report
+│   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md # Unabridged full project report
 │   └── audit/                          # 6-part scientific and audit reports
 ├── scripts/
 │   ├── audit_metrics.py                # Reproducible test metrics verification script
