@@ -1,10 +1,10 @@
-# ToxiFusionNet default configuration (real experiments). Override anything from the CLI: key.sub=value
+# SARC-FuseNet default configuration (real experiments). Override anything from the CLI: key.sub=value
 seed: 42
-experiment_name: toxifusionnet
+experiment_name: sarc_fusenet
 output_dir: runs
 
 data:
-  processed_path: data/processed/dataset.csv   # canonical file produced by `toxifusion prepare`
+  processed_path: data/processed/dataset.csv   # canonical file produced by `sarc-fusenet prepare`
   max_length: 128
   val_size: 0.1
   test_size: 0.1
