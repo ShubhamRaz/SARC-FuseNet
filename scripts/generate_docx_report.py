@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate a publication-grade Word document (.docx) accuracy report.
 
-Target: D:\Research ppr\toxifusionnet_accuracy_report.docx
+Target: D:\Research ppr\sarc_fusenet_accuracy_report.docx
 """
 import os
 import sys
@@ -121,7 +121,7 @@ def build_accuracy_docx(output_path: str):
     title_p = doc.add_paragraph()
     title_p.paragraph_format.space_before = Pt(0)
     title_p.paragraph_format.space_after = Pt(4)
-    run_title = title_p.add_run("ToxiFusionNet: Comprehensive Accuracy & Multi-Task Evaluation Report")
+    run_title = title_p.add_run("SARCFuseNet: Comprehensive Accuracy & Multi-Task Evaluation Report")
     run_title.font.name = "Calibri"
     run_title.font.size = Pt(22)
     run_title.font.bold = True
@@ -144,7 +144,7 @@ def build_accuracy_docx(output_path: str):
     meta_cells[1].text = "Methodology: 5-Fold Stratified Group CV (StratifiedGroupKFold)"
     meta_cells_2 = meta_table.rows[1].cells
     meta_cells_2[0].text = "Significance: Cluster-Bootstrap (B=10k) & Holm-Bonferroni"
-    meta_cells_2[1].text = "Repository: https://github.com/ShubhamRaz/toxifusionnet"
+    meta_cells_2[1].text = "Repository: https://github.com/ShubhamRaz/sarc_fusenet"
     
     for r in meta_table.rows:
         for c in r.cells:
@@ -173,7 +173,7 @@ def build_accuracy_docx(output_path: str):
     r_h1.font.color.rgb = navy
 
     doc.add_paragraph(
-        "This evaluation report benchmarks ToxiFusionNet against classical heuristics, linear baselines, "
+        "This evaluation report benchmarks SARCFuseNet against classical heuristics, linear baselines, "
         "CPU transformer baselines, and state-of-the-art multimodal deep learning models on the MultiBully Hindi-English "
         "code-mixed meme benchmark. Accuracy, Balanced Accuracy, Macro-F1, and Area Under the ROC Curve (AUROC) "
         "are evaluated across all four operational heads: Hate Speech, Sarcasm, Severity, and Target."
@@ -372,7 +372,7 @@ def build_accuracy_docx(output_path: str):
         "To run live inference with certified >=85% selective classification triage:\n"
         "powershell:\n"
         "  $env:PYTHONPATH=\"src\"\n"
-        "  python -m toxifusionnet.cli predict --run-dir models/multibully_cpu_full_seed42 "
+        "  python -m sarc_fusenet.cli predict --run-dir models/multibully_cpu_full_seed42 "
         "--text \"Wah bhai wah, kya genius idea hai lol\" --target-accuracy 0.85\n\n"
         "To reproduce the full cross-validation accuracy curve:\n"
         "powershell:\n"
@@ -386,5 +386,5 @@ def build_accuracy_docx(output_path: str):
 
 
 if __name__ == "__main__":
-    out_target = "D:/Research ppr/toxifusionnet_accuracy_report.docx"
+    out_target = "D:/Research ppr/sarc_fusenet_accuracy_report.docx"
     build_accuracy_docx(out_target)
