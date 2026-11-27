@@ -4,7 +4,7 @@
 
 ## 1. Architectural Component Verification Matrix
 
-We inspected the underlying PyTorch source code in [`src/sarc_fusenet/models/sarc_fusenet.py`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/sarc_fusenet/sarc_fusenet/src/sarc_fusenet/models/sarc_fusenet.py) and compared each component against documented claims:
+We inspected the underlying PyTorch source code in [`src/sarc_fusenet/models/sarc_fusenet.py`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/SARC-FuseNet/src/sarc_fusenet/models/sarc_fusenet.py) and compared each component against documented claims:
 
 | Documented Component | Claimed Description in Reports | Actual Implementation in Code | Verification Status | Correction Required |
 | :--- | :--- | :--- | :---: | :--- |
