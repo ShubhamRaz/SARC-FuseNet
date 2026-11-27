@@ -1,4 +1,4 @@
-"""Lightweight Local Validation & Smoke-Test Workflow for ToxiFusionNet.
+"""Lightweight Local Validation & Smoke-Test Workflow for SARCFuseNet.
 
 Validates:
 1. Existing test suite pass/fail status.
@@ -7,7 +7,7 @@ Validates:
 4. Masked multitask losses for missing / inapplicable labels (IGNORE_INDEX = -100).
 5. Modality presence mask invariance (dummy pixels cannot affect predictions).
 6. 1-epoch lightweight training run and checkpoint saving to runs/smoke_test_local.
-7. Checkpoint loading via ToxiFusionPipeline and inference verification.
+7. Checkpoint loading via SARCFusePipeline and inference verification.
 8. Experiment configuration validation for supercomputer readiness (exp1 through exp4).
 """
 from __future__ import annotations
@@ -25,22 +25,22 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader
 
-# ToxiFusionNet imports
-from toxifusionnet.config import Config, load_config
-from toxifusionnet.data.dataset import HateSarcasmDataset, make_collate
-from toxifusionnet.inference.pipeline import ToxiFusionPipeline
-from toxifusionnet.labels import (
+# SARCFuseNet imports
+from sarc_fusenet.config import Config, load_config
+from sarc_fusenet.data.dataset import HateSarcasmDataset, make_collate
+from sarc_fusenet.inference.pipeline import SARCFusePipeline
+from sarc_fusenet.labels import (
     IGNORE_INDEX,
     LABEL_SPACES,
     TASKS,
     apply_label_config,
     num_classes,
 )
-from toxifusionnet.models.encoder import build_encoder_and_tokenizer
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
-from toxifusionnet.preprocessing.normalize import TextNormalizer
-from toxifusionnet.training.trainer import train_run
+from sarc_fusenet.models.encoder import build_encoder_and_tokenizer
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.training.trainer import train_run
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("validation")
@@ -143,7 +143,7 @@ def test_2_model_forward_backward_heads(encoder, batch):
         "freeze_clip": True,
         "clip_model_name": "openai/clip-vit-base-patch32"
     })
-    model = ToxiFusionNet(encoder, cfg_model)
+    model = SARCFuseNet(encoder, cfg_model)
     model.train()
 
     out = model(
@@ -343,9 +343,9 @@ def test_5_smoke_training_run():
 
 
 def test_6_checkpoint_loading_and_inference(run_dir: Path):
-    """Verify loading the saved checkpoint and running end-to-end inference via ToxiFusionPipeline."""
+    """Verify loading the saved checkpoint and running end-to-end inference via SARCFusePipeline."""
     logger.info("=== STEP 6: Testing Checkpoint Loading & Inference Pipeline ===")
-    pipe = ToxiFusionPipeline.from_run(run_dir, device="cpu")
+    pipe = SARCFusePipeline.from_run(run_dir, device="cpu")
 
     test_samples = [
         "यह काम बहुत अच्छा किया आपने शाबाश",
@@ -396,7 +396,7 @@ def test_7_supercomputer_config_validation():
 
 def main():
     print("=" * 70)
-    print(" ToxiFusionNet Lightweight Local Validation Workflow")
+    print(" SARCFuseNet Lightweight Local Validation Workflow")
     print("=" * 70)
 
     try:
