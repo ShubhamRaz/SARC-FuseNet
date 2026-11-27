@@ -14,18 +14,18 @@ import numpy as np
 import pandas as pd
 import torch
 
-from toxifusionnet.data.grouped_splits import (
+from sarc_fusenet.data.grouped_splits import (
     assign_group_ids,
     audit_fold_integrity,
     make_grouped_cv_splits,
     normalize_ocr_text,
 )
-from toxifusionnet.labels import IGNORE_INDEX, TASKS
-from toxifusionnet.models.clip import GatedVisionFusion, build_clip_vision
-from toxifusionnet.models.encoder import BertConfig, BertModel, train_wordpiece_tokenizer
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
-from toxifusionnet.training.stats import bootstrap_ci
+from sarc_fusenet.labels import IGNORE_INDEX, TASKS
+from sarc_fusenet.models.clip import GatedVisionFusion, build_clip_vision
+from sarc_fusenet.models.encoder import BertConfig, BertModel, train_wordpiece_tokenizer
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
+from sarc_fusenet.training.stats import bootstrap_ci
 
 
 @pytest.fixture
