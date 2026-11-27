@@ -247,7 +247,7 @@ def build_parser():
     s.add_argument("--out", default="data/processed/dataset.csv"); s.add_argument("--val-size", type=float, default=None)
     s.add_argument("--test-size", type=float, default=None); s.add_argument("--seed", type=int, default=None)
     s.add_argument("--no-weak", action="store_true", help="do not create weak sarcasm/severity labels"); s.set_defaults(fn=cmd_prepare)
-    s = sub.add_parser("train", help="train ToxiFusionNet"); add_cfg(s); s.add_argument("--run-dir", default=None); s.add_argument("--all-data", action="store_true", help="fit on every row; do not report validation/test metrics"); s.set_defaults(fn=cmd_train)
+    s = sub.add_parser("train", help="train SARC-FuseNet"); add_cfg(s); s.add_argument("--run-dir", default=None); s.add_argument("--all-data", action="store_true", help="fit on every row; do not report validation/test metrics"); s.set_defaults(fn=cmd_train)
     def add_run(sp):
         sp.add_argument("--run-dir", required=True); sp.add_argument("--device", default="cpu")
 
