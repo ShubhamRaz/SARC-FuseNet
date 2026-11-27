@@ -18,7 +18,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, train_test_split
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 def normalize_ocr_text(texts: pd.Series) -> pd.Series:
