@@ -1,4 +1,4 @@
-# ToxiFusionNet: NVIDIA DGX H100 Pod Execution & Reproducibility Guide
+# SARC-FuseNet: NVIDIA DGX H100 Pod Execution & Reproducibility Guide
 
 **Target Hardware:** NVIDIA DGX H100 (8x H100 80GB SXM5, PCIe Gen5, Ubuntu 22.04 LTS / CUDA 12.x)  
 **Repository:** `https://github.com/ShubhamRaz/toxifusionnet.git`  
@@ -57,7 +57,7 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 # Verify NVIDIA GPU recognition
 python3 -c "import torch; print('CUDA Available:', torch.cuda.is_available(), '| Device Count:', torch.cuda.device_count(), '| Device Name:', torch.cuda.get_device_name(0))"
 
-# Install ToxiFusionNet in editable mode with development, explanation, and server dependencies
+# Install SARC-FuseNet in editable mode with development, explanation, and server dependencies
 pip install -e ".[explain,serve,dev]"
 ```
 
