@@ -1,4 +1,4 @@
-# SARC-FuseNet: Stage 3 Final Engineering & Research Report
+# SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network): Stage 3 Final Engineering & Research Report
 ## Tri-Dataset Multi-Task Sarcasm-Aware Hate Speech Detection in Code-Mixed Hinglish
 
 - **Evaluation Date:** October 20, 2026
@@ -100,7 +100,7 @@ In Stage 2, training on an isolated single source led to narrow phrasing constra
 ## 5. Directory & File Inventory on Clean Branch
 
 ```
-toxifusionnet/
+sarc_fusenet/
 ├── configs/
 │   └── combined_all_3_datasets.yaml    # Production training configuration
 ├── data/
@@ -127,13 +127,13 @@ To run live inference with explanations using the trained Stage 3 model:
 
 ```powershell
 # Navigate to repository
-cd "C:\Users\SHUBHAM RAJ\Desktop\Others\Toxic\toxifusionnet\toxifusionnet"
+cd "C:\Users\SHUBHAM RAJ\Desktop\Others\Toxic\sarc_fusenet\sarc_fusenet"
 
 # Activate environment
 .\.venv\Scripts\Activate.ps1
 
 # Predict with confidence margins and token rationales
-python -m toxifusionnet.cli predict `
+python -m sarc_fusenet.cli predict `
   --run-dir runs/exp_tri_dataset_xlmr `
   --text "Wah bhai tum toh bohot bade gyani ho, sabko bewakoof samajhte ho"
 ```
