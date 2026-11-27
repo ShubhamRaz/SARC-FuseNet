@@ -17,8 +17,8 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 if str(REPO_ROOT / "src") not in sys.path:
     sys.path.insert(0, str(REPO_ROOT / "src"))
 
-from toxifusionnet.data.grouped_splits import audit_fold_integrity, make_grouped_cv_splits
-from toxifusionnet.experiments.cv import compute_normalized_fold_cache_sha256, validate_fold_cache
+from sarc_fusenet.data.grouped_splits import audit_fold_integrity, make_grouped_cv_splits
+from sarc_fusenet.experiments.cv import compute_normalized_fold_cache_sha256, validate_fold_cache
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(message)s")
 log = logging.getLogger("generate_combined_folds")
