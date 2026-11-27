@@ -17,7 +17,7 @@
 ## Table of Contents
 1. [Executive Summary & Abstract](#1-executive-summary--abstract)
 2. [Introduction & Problem Statement](#2-introduction--problem-statement)
-3. [SARC-FuseNet Architecture & Mathematical Formulation](#3-sarc_fusenet-architecture--mathematical-formulation)
+3. [SARC-FuseNet Architecture & Mathematical Formulation](#3-sarc-fusenet-architecture--mathematical-formulation)
 4. [Dataset Provenance, Evolution & Tri-Dataset Fusion](#4-dataset-provenance-evolution--tri-dataset-fusion)
 5. [Training Progression & Convergence Dynamics](#5-training-progression--convergence-dynamics)
 6. [Comprehensive Multi-Task Evaluation Scorecard](#6-comprehensive-multi-task-evaluation-scorecard)
@@ -293,7 +293,7 @@ The trained checkpoint and tokenizer are completely self-contained in `runs/exp_
 ### 9.1 Reproducing End-to-End Training (One-Click)
 ```powershell
 # Windows (PowerShell)
-cd "sarc_fusenet/sarc_fusenet"
+cd "SARC-FuseNet"
 .\run.ps1
 ```
 ```bash
@@ -337,35 +337,25 @@ for res in results:
 The delivery package has been completely cleaned, audited, and committed to git branch `feature/hinglish-balanced-dataset`:
 
 ```
-Toxic/
-├── SARC-FUSENET_FULL_PROJECT_REPORT.md           # Full technical report
-├── STAGE_3_FINAL_REPORT.md                        # Summary report
-├── SARC-FuseNet_Project_Report.docx              # Project narrative document
-└── sarc_fusenet/
-    └── sarc_fusenet/
-        ├── README.md                              # Master GitHub documentation
-        ├── run.ps1                                # 1-click Windows training & test script
-        ├── run_supercomputer.sh                   # 1-click Linux / Cluster launch script
-        ├── configs/
-        │   └── combined_all_3_datasets.yaml       # Production model training configuration
-        ├── data/
-        │   └── processed/
-        │       ├── combined_all_3_datasets.csv    # Canonical 56.9k unified tri-dataset
-        │       └── combined_all_3_datasets.meta.json
-        ├── reports/
-        │   ├── STAGE_3_FINAL_REPORT.md            # Comprehensive research report
-        │   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md # Full unabridged technical report
-        │   ├── sarc-fusenet_final_tri_dataset_evaluation.txt # Formatted evaluation dump
-        │   └── audit/                             # Complete 6-part audit suite
-        ├── runs/
-        │   └── exp_tri_dataset_xlmr/
-        │       ├── model.pt                       # 1.13 GB PyTorch trained weights
-        │       ├── metrics.json                   # Full evaluation JSON dictionary
-        │       ├── history.csv                    # Training loss & validation progression
-        │       ├── preds_test.csv                 # Detailed per-sample test predictions
-        │       ├── tokenizer/                     # Fast XLM-RoBERTa tokenizer
-        │       └── encoder_config/                # Model architecture configuration
-        └── src/sarc_fusenet/                     # Full modular Python package source code
+SARC-FuseNet/
+├── README.md
+├── pyproject.toml
+├── configs/
+├── data/
+├── docs/
+│   └── SARC-FuseNet_Project_Report.docx
+├── reports/
+│   ├── STAGE_3_FINAL_REPORT.md
+│   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md
+│   ├── sarc-fusenet_final_tri_dataset_evaluation.txt
+│   └── audit/
+├── results/
+├── scripts/
+├── src/
+│   └── sarc_fusenet/
+│       └── models/
+│           └── sarc_fusenet.py
+└── tests/
 ```
 
 ---
