@@ -19,12 +19,12 @@ from ..data.dataset import HateSarcasmDataset, make_collate
 from ..labels import IGNORE_INDEX, LABEL_SPACES, TASKS, apply_label_config
 from ..models.encoder import build_encoder_and_tokenizer
 from ..models.losses import MultiTaskLoss
-from ..models.toxifusionnet import SARCFuseNet
+from ..models.sarc_fusenet import SARCFuseNet
 from ..preprocessing.normalize import TextNormalizer
 from .balancing import compute_fold_class_weights, compute_task_class_weights
 from .metrics import evaluate_predictions, flatten_metrics
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 def set_seed(seed: int):
