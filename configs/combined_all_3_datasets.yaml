@@ -1,4 +1,4 @@
-# Experiment: ToxiFusionNet on Tri-Dataset Merge (MultiBully + HOT + Hinglish Toxic Hate, 56.9k)
+# Experiment: SARC-FuseNet on Tri-Dataset Merge (MultiBully + HOT + Hinglish Toxic Hate, 56.9k)
 # Evaluates unified training across real-world memes, social tweets, and extensive Hinglish text
 experiment_name: exp_tri_dataset_xlmr
 data:
