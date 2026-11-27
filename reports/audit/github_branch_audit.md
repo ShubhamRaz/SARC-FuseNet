@@ -4,7 +4,7 @@
 
 ## 1. Remote & Local Repository Specification
 
-- **GitHub Repository URL:** `https://github.com/ShubhamRaz/toxifusionnet`
+- **GitHub Repository URL:** `https://github.com/ShubhamRaz/SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network)`
 - **Target Branch Inspected:** `feature/hinglish-balanced-dataset`
 - **Audit Execution Date:** October 20, 2026
 - **Auditor Role:** Senior ML Research Auditor & NLP Software Engineer
@@ -14,7 +14,7 @@
 ## 2. Git State & Remote Synchronization
 
 ```text
-Local Working Tree: c:\Users\SHUBHAM RAJ\Desktop\Others\Toxic\toxifusionnet\toxifusionnet
+Local Working Tree: c:\Users\SHUBHAM RAJ\Desktop\Others\Toxic\sarc_fusenet\sarc_fusenet
 Current Local Branch: feature/hinglish-balanced-dataset
 Current Local HEAD SHA: 371a09e13f412ba771bb5e7144e311f67823f66c
 Working Tree Status: Clean (0 uncommitted changes, 0 unstaged changes)
@@ -41,7 +41,7 @@ A direct `git fetch origin` was performed. Inspection of remote branches reveals
   5. `5965eff`: *docs: update master README with Stage 3 architecture, benchmarks, and inference guide*
   6. `11bfb3d`: *feat: configure run.ps1 and run_supercomputer.sh for 1-click training from scratch*
   7. `da4994d`: *clean: replace outdated reports with Stage 3 tri-dataset evaluation reports*
-  8. `b9ed1f7`: *docs: add comprehensive unabridged ToxiFusionNet full project report*
+  8. `b9ed1f7`: *docs: add comprehensive unabridged SARC-FuseNet full project report*
   9. `56530c1`: *docs: add dataset provenance and references including Kaggle Hinglish Toxic Hate dataset*
   10. `371a09e`: *docs: add exact URLs for MultiBully (Kaggle) and HOT (GitHub) dataset references*
 
@@ -59,13 +59,13 @@ A direct `git fetch origin` was performed. Inspection of remote branches reveals
 | `results/stage3_tri_dataset/history.csv` | 2.9 KB | **YES** | No | Tracked (Training epoch loss/F1 curves) |
 | `scripts/audit_metrics.py` | 5.5 KB | **YES** | No | Tracked (Zero-dependency verification script) |
 | `runs/exp_tri_dataset_xlmr/model.pt` | 1.13 GB | **NO** | **YES (Line 5: `runs/`)** | Local Only (>100MB GitHub limit) |
-| `reports/TOXIFUSIONNET_FULL_PROJECT_REPORT.md`| 24.1 KB | **YES** | No | Committed in `b9ed1f7` |
+| `reports/SARC-FUSENET_FULL_PROJECT_REPORT.md`| 24.1 KB | **YES** | No | Committed in `b9ed1f7` |
 | `reports/STAGE_3_FINAL_REPORT.md` | 7.6 KB | **YES** | No | Committed in `da4994d` |
-| `reports/toxifusionnet_final_tri_dataset_evaluation.txt` | 2.5 KB | **YES** | No | Committed in `da4994d` |
+| `reports/sarc-fusenet_final_tri_dataset_evaluation.txt` | 2.5 KB | **YES** | No | Committed in `da4994d` |
 | `README.md` | 8.8 KB | **YES** | No | Committed in `5965eff` |
 | `run.ps1` | 2.0 KB | **YES** | No | Committed in `11bfb3d` |
 
 ### Key Reproducibility Implication
 - The dataset (`combined_all_3_datasets.csv`), full test predictions (`results/stage3_tri_dataset/preds_test.csv`), epoch histories, configs, evaluation scripts (`scripts/audit_metrics.py`), and audited reports are all tracked in Git and pushed to GitHub.
 - Any researcher or reviewer cloning the repository can immediately verify and reproduce all exact test metrics, confusion matrices, and disaggregated performance metrics by running `python scripts/audit_metrics.py` without needing GPUs.
-- The 1.13 GB binary model weights checkpoint (`runs/exp_tri_dataset_xlmr/model.pt`) is excluded from Git to comply with GitHub's 100MB file limit. Users can train from scratch in 1 click using `python -m toxifusionnet.cli train --config configs/combined_all_3_datasets.yaml` (or `.\run.ps1`) or download published weights from GitHub Releases.
+- The 1.13 GB binary model weights checkpoint (`runs/exp_tri_dataset_xlmr/model.pt`) is excluded from Git to comply with GitHub's 100MB file limit. Users can train from scratch in 1 click using `python -m sarc_fusenet.cli train --config configs/combined_all_3_datasets.yaml` (or `.\run.ps1`) or download published weights from GitHub Releases.
