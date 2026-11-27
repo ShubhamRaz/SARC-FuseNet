@@ -100,7 +100,7 @@ In Stage 2, training on an isolated single source led to narrow phrasing constra
 ## 5. Directory & File Inventory on Clean Branch
 
 ```
-sarc_fusenet/
+SARC-FuseNet/
 ├── configs/
 │   └── combined_all_3_datasets.yaml    # Production training configuration
 ├── data/
