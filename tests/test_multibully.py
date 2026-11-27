@@ -3,14 +3,14 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from toxifusionnet.analysis.describe import describe_dataset
-from toxifusionnet.config import load_config
-from toxifusionnet.data.schema import build_canonical, load_schema, read_table, resolve_column
-from toxifusionnet.data.splits import make_splits
-from toxifusionnet.data.synthetic import make_multibully_layout
-from toxifusionnet.inference.pipeline import ToxiFusionPipeline
-from toxifusionnet.labels import LABEL_SPACES, label_to_id, num_classes
-from toxifusionnet.training.trainer import train_run
+from sarc_fusenet.analysis.describe import describe_dataset
+from sarc_fusenet.config import load_config
+from sarc_fusenet.data.schema import build_canonical, load_schema, read_table, resolve_column
+from sarc_fusenet.data.splits import make_splits
+from sarc_fusenet.data.synthetic import make_multibully_layout
+from sarc_fusenet.inference.pipeline import SARCFusePipeline
+from sarc_fusenet.labels import LABEL_SPACES, label_to_id, num_classes
+from sarc_fusenet.training.trainer import train_run
 
 SCHEMA = "configs/schema_multibully.yaml"
 
@@ -87,7 +87,7 @@ def test_train_and_predict_with_four_class_target(raw, tmp_path):
     cfg = load_config("configs/smoke_multibully.yaml", ["train.epochs=2"])
     res = train_run(cfg, df, tmp_path / "run")
     assert len(res["test"]["target"]["classes"]) == 4
-    pipe = ToxiFusionPipeline.from_run(tmp_path / "run")
+    pipe = SARCFusePipeline.from_run(tmp_path / "run")
     out = pipe.predict("Wah wah, us jaati ke log to genius hain, ekdum bekaar hain lol")
     if out["hate"]["label"] == "hate":
         assert set(out["target"]["probs"]) == {"individual", "organization", "community", "society"}
