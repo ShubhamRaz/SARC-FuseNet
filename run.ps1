@@ -1,8 +1,8 @@
-# One-click launch script to train ToxiFusionNet from scratch on the unified Tri-Dataset
+# One-click launch script to train SARC-FuseNet from scratch on the unified Tri-Dataset
 $ErrorActionPreference = "Stop"
 
 Write-Host "==========================================================" -ForegroundColor Cyan
-Write-Host " ToxiFusionNet: End-to-End Training from Scratch          " -ForegroundColor Cyan
+Write-Host " SARC-FuseNet: End-to-End Training from Scratch          " -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 # 1. Activate Virtual Environment
