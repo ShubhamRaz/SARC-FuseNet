@@ -1,4 +1,4 @@
-# ToxiFusionNet: Comprehensive Experiment Index & Reproducibility Registry
+# SARC-FuseNet: Comprehensive Experiment Index & Reproducibility Registry
 
 **Repository:** `https://github.com/ShubhamRaz/toxifusionnet`  
 **Registry Version:** `3.0.0`  
@@ -8,7 +8,7 @@
 
 ## 1. Overview & Evaluation Protocols
 
-This index catalogs all historical, validated, and reproducible experiments conducted within the ToxiFusionNet project. Every experiment reported here maps to concrete configuration files, fixed random seeds, versioned dataset manifests, and evaluation artifacts.
+This index catalogs all historical, validated, and reproducible experiments conducted within the SARC-FuseNet project. Every experiment reported here maps to concrete configuration files, fixed random seeds, versioned dataset manifests, and evaluation artifacts.
 
 ### Established Protocol Standards
 - **Evaluation Methodology:** 5-Fold Grouped Cross-Validation with strict priority multi-task stratification (`StratifiedGroupKFold`).
