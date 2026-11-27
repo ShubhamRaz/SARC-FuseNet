@@ -1,4 +1,4 @@
-# SARC-FuseNet: Complete Project Research & Engineering Report
+# SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network): Complete Project Research & Engineering Report
 ## Sarcasm-Aware Multi-Task Deep Learning Framework for Hate Speech Detection in Hindi-English (Hinglish) Code-Mixed Text
 
 ---
@@ -17,7 +17,7 @@
 ## Table of Contents
 1. [Executive Summary & Abstract](#1-executive-summary--abstract)
 2. [Introduction & Problem Statement](#2-introduction--problem-statement)
-3. [SARC-FuseNet Architecture & Mathematical Formulation](#3-toxifusionnet-architecture--mathematical-formulation)
+3. [SARC-FuseNet Architecture & Mathematical Formulation](#3-sarc_fusenet-architecture--mathematical-formulation)
 4. [Dataset Provenance, Evolution & Tri-Dataset Fusion](#4-dataset-provenance-evolution--tri-dataset-fusion)
 5. [Training Progression & Convergence Dynamics](#5-training-progression--convergence-dynamics)
 6. [Comprehensive Multi-Task Evaluation Scorecard](#6-comprehensive-multi-task-evaluation-scorecard)
@@ -293,7 +293,7 @@ The trained checkpoint and tokenizer are completely self-contained in `runs/exp_
 ### 9.1 Reproducing End-to-End Training (One-Click)
 ```powershell
 # Windows (PowerShell)
-cd "toxifusionnet/toxifusionnet"
+cd "sarc_fusenet/sarc_fusenet"
 .\run.ps1
 ```
 ```bash
@@ -303,17 +303,17 @@ bash run_supercomputer.sh all
 
 ### 9.2 Running Live CLI Predictions
 ```powershell
-python -m toxifusionnet.cli predict `
+python -m sarc_fusenet.cli predict `
   --run-dir runs/exp_tri_dataset_xlmr `
   --text "Wah bhai tum toh bohot bade gyani ho, sabko bewakoof samajhte ho"
 ```
 
 ### 9.3 Python Programmatic API Usage
 ```python
-from toxifusionnet.inference.pipeline import ToxiFusionPipeline
+from sarc_fusenet.inference.pipeline import SARCFusePipeline
 
 # Load the production Stage 3 checkpoint
-pipe = ToxiFusionPipeline.from_run("runs/exp_tri_dataset_xlmr", device="cuda")
+pipe = SARCFusePipeline.from_run("runs/exp_tri_dataset_xlmr", device="cuda")
 
 # Run inference with explainability
 results = pipe.predict([
@@ -341,8 +341,8 @@ Toxic/
 ├── SARC-FUSENET_FULL_PROJECT_REPORT.md           # Full technical report
 ├── STAGE_3_FINAL_REPORT.md                        # Summary report
 ├── SARC-FuseNet_Project_Report.docx              # Project narrative document
-└── toxifusionnet/
-    └── toxifusionnet/
+└── sarc_fusenet/
+    └── sarc_fusenet/
         ├── README.md                              # Master GitHub documentation
         ├── run.ps1                                # 1-click Windows training & test script
         ├── run_supercomputer.sh                   # 1-click Linux / Cluster launch script
@@ -355,7 +355,7 @@ Toxic/
         ├── reports/
         │   ├── STAGE_3_FINAL_REPORT.md            # Comprehensive research report
         │   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md # Full unabridged technical report
-        │   ├── toxifusionnet_final_tri_dataset_evaluation.txt # Formatted evaluation dump
+        │   ├── sarc-fusenet_final_tri_dataset_evaluation.txt # Formatted evaluation dump
         │   └── audit/                             # Complete 6-part audit suite
         ├── runs/
         │   └── exp_tri_dataset_xlmr/
@@ -365,7 +365,7 @@ Toxic/
         │       ├── preds_test.csv                 # Detailed per-sample test predictions
         │       ├── tokenizer/                     # Fast XLM-RoBERTa tokenizer
         │       └── encoder_config/                # Model architecture configuration
-        └── src/toxifusionnet/                     # Full modular Python package source code
+        └── src/sarc_fusenet/                     # Full modular Python package source code
 ```
 
 ---
