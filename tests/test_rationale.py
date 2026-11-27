@@ -1,7 +1,7 @@
 import numpy as np
 
-from toxifusionnet.explain.metrics import faithfulness, iou_f1, plausibility, top_k_mask
-from toxifusionnet.explain.rationale import (aggregate_annotators, combine_rationales, ground_truth_attention,
+from sarc_fusenet.explain.metrics import faithfulness, iou_f1, plausibility, top_k_mask
+from sarc_fusenet.explain.rationale import (aggregate_annotators, combine_rationales, ground_truth_attention,
                                              temperature_softmax, to_binary_masks)
 
 

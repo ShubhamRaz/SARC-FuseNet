@@ -32,11 +32,11 @@ $OUT = "runs/exp_tri_dataset_xlmr"
 
 Write-Host "[3/4] Launching training with config: $CONFIG..." -ForegroundColor Green
 Write-Host "      Trained checkpoint will be saved to: $OUT" -ForegroundColor Gray
-python -m toxifusionnet.cli train --config $CONFIG
+python -m sarc_fusenet.cli train --config $CONFIG
 
 # 4. Verify Model with Sample Predictions
 Write-Host "[4/4] Verifying trained model with sample predictions..." -ForegroundColor Green
-python -m toxifusionnet.cli predict `
+python -m sarc_fusenet.cli predict `
     --run-dir $OUT `
     --text "Congrats bro, strict diet ke beech spicy golgappe ne prove kar diya ki hope pe world kayam hai" `
            "Saale ye lobby ke log itna disgusting aur pathetic harkat karta hai" `

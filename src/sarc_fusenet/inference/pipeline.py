@@ -16,12 +16,12 @@ from ..config import Config
 from ..data.dataset import encode_words
 from ..labels import LABEL_SPACES, apply_label_config
 from ..models.encoder import rebuild_encoder_from_dir
-from ..models.toxifusionnet import SARCFuseNet
+from ..models.sarc_fusenet import SARCFuseNet
 from ..preprocessing.features import cue_vector
 from ..preprocessing.normalize import TextNormalizer
 
 
-class ToxiFusionPipeline:
+class SARCFusePipeline:
     def __init__(self, model: SARCFuseNet, tokenizer, normalizer: TextNormalizer, max_length: int = 128,
                  device="cpu", hate_threshold: float = 0.5, sarcasm_threshold: float = 0.5,
                  confidence_margin: float = 0.0):
@@ -32,7 +32,7 @@ class ToxiFusionPipeline:
         self.confidence_margin = confidence_margin
 
     @classmethod
-    def from_run(cls, run_dir: str | Path, device: str = "cpu", **kw) -> "ToxiFusionPipeline":
+    def from_run(cls, run_dir: str | Path, device: str = "cpu", **kw) -> "SARCFusePipeline":
         run_dir = Path(run_dir)
         ckpt = torch.load(run_dir / "model.pt", map_location="cpu")
         cfg = Config.wrap(ckpt["cfg"])

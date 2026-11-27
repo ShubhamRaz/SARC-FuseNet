@@ -1,9 +1,9 @@
 import numpy as np
 
-from toxifusionnet.preprocessing.features import CUE_DIM, CUE_NAMES, cue_vector
-from toxifusionnet.preprocessing.language_id import analyze, code_mixing_index
-from toxifusionnet.preprocessing.normalize import TextNormalizer
-from toxifusionnet.preprocessing.transliteration import transliterate_devanagari
+from sarc_fusenet.preprocessing.features import CUE_DIM, CUE_NAMES, cue_vector
+from sarc_fusenet.preprocessing.language_id import analyze, code_mixing_index
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.preprocessing.transliteration import transliterate_devanagari
 
 N = TextNormalizer()
 

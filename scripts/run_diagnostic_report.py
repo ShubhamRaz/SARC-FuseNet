@@ -20,7 +20,7 @@ root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
 import pandas as pd
-from toxifusionnet.analysis.diagnostic import run_full_diagnostic_analysis
+from sarc_fusenet.analysis.diagnostic import run_full_diagnostic_analysis
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
 
     args = parser.parse_args()
 
-    print("=== ToxiFusionNet: Running Multi-Task Diagnostic Analysis ===")
+    print("=== SARCFuseNet: Running Multi-Task Diagnostic Analysis ===")
     report = run_full_diagnostic_analysis(
         e1c_dir=args.e1c_dir,
         e1d_dir=args.e1d_dir,

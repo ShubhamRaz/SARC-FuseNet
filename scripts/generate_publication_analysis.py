@@ -19,7 +19,7 @@ from pathlib import Path
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
-from toxifusionnet.experiments.compare import run_publication_analysis
+from sarc_fusenet.experiments.compare import run_publication_analysis
 
 
 def main():
@@ -42,7 +42,7 @@ def main():
 
     args = parser.parse_args()
 
-    print("=== ToxiFusionNet: Generating Publication-Grade Statistical Analysis ===")
+    print("=== SARCFuseNet: Generating Publication-Grade Statistical Analysis ===")
     res = run_publication_analysis(
         e1c_dir=args.e1c_dir,
         e1d_dir=args.e1d_dir,

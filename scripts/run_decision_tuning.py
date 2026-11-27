@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run leakage-safe validation-only decision tuning on ToxiFusionNet experiments.
+"""Run leakage-safe validation-only decision tuning on SARCFuseNet experiments.
 
 Usage:
     python scripts/run_decision_tuning.py \
@@ -20,7 +20,7 @@ root_dir = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(root_dir / "src"))
 
 import pandas as pd
-from toxifusionnet.analysis.decision_tuning import run_full_decision_tuning_experiment
+from sarc_fusenet.analysis.decision_tuning import run_full_decision_tuning_experiment
 
 
 def main():
@@ -38,7 +38,7 @@ def main():
 
     args = parser.parse_args()
 
-    print("=== ToxiFusionNet: Running Leakage-Safe Decision Tuning ===")
+    print("=== SARCFuseNet: Running Leakage-Safe Decision Tuning ===")
     results = run_full_decision_tuning_experiment(
         exp_dir=args.exp_dir,
         exp_name=args.exp_name,

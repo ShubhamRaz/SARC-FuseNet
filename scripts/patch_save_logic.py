@@ -12,14 +12,14 @@ old_save = """    # Save to requested destination
 
 
 if __name__ == "__main__":
-    out_path = "D:/Research ppr/ToxiFusionNet_Report1_Final_Professional.docx"
+    out_path = "D:/Research ppr/SARCFuseNet_Report1_Final_Professional.docx"
     build_final_professional_report(out_path)"""
 
 new_save = """    # Save to multiple targets
     targets = [
-        Path("reports/ToxiFusionNet_Report1_Final_Professional.docx"),
-        Path("D:/Research ppr/ToxiFusionNet_Report1_Final_Professional_Updated.docx"),
-        Path("D:/Research ppr/toxifusionnet_accuracy_report.docx"),
+        Path("reports/SARCFuseNet_Report1_Final_Professional.docx"),
+        Path("D:/Research ppr/SARCFuseNet_Report1_Final_Professional_Updated.docx"),
+        Path("D:/Research ppr/sarc_fusenet_accuracy_report.docx"),
         Path(output_docx_path),
     ]
     for target in targets:
@@ -28,13 +28,13 @@ new_save = """    # Save to multiple targets
             doc.save(str(target))
             print(f"Successfully saved report at: {target.resolve()} ({target.stat().st_size} bytes)")
         except PermissionError:
-            print(f"Notice: {target.name} is currently open in Word. Created updated copy at ToxiFusionNet_Report1_Final_Professional_Updated.docx")
+            print(f"Notice: {target.name} is currently open in Word. Created updated copy at SARCFuseNet_Report1_Final_Professional_Updated.docx")
         except Exception as e:
             print(f"Warning saving to {target}: {e}")
 
 
 if __name__ == "__main__":
-    out_path = "D:/Research ppr/ToxiFusionNet_Report1_Final_Professional.docx"
+    out_path = "D:/Research ppr/SARCFuseNet_Report1_Final_Professional.docx"
     build_final_professional_report(out_path)"""
 
 assert old_save in code, "old_save not found"

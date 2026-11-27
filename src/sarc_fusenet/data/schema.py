@@ -17,7 +17,7 @@ import yaml
 
 from ..labels import HATE_LABELS, LABEL_SPACES, SARCASM_LABELS, SEVERITY_LABELS, TARGET_LABELS, apply_label_config  # noqa: F401
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 POS_VALUES = {"1", "true", "yes", "y", "sarcastic", "sarcasm", "hate", "hateful", "hatespeech", "bully", "bullying",
               "cyberbullying", "other_cyberbullying", "abusive", "toxic"}
@@ -277,7 +277,7 @@ def build_canonical(df: pd.DataFrame, schema: dict, weak_fill: bool = True) -> p
 
 
 def guess_schema(df: pd.DataFrame) -> dict:
-    """Heuristically propose a schema for an unknown dataframe (used by ``toxifusion inspect``)."""
+    """Heuristically propose a schema for an unknown dataframe (used by ``sarc-fusenet inspect``)."""
     obj_cols = [c for c in df.columns if df[c].dtype == object or str(df[c].dtype).startswith("str")]
     text_col = max(obj_cols, key=lambda c: df[c].astype(str).str.len().mean()) if obj_cols else df.columns[0]
     low = {c: c.lower() for c in df.columns}

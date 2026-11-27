@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "=== ToxiFusionNet Supercomputer Launch Script ==="
+echo "=== SARC-FuseNet Supercomputer Launch Script ==="
 
 if [ -f ".venv/bin/activate" ]; then
     source .venv/bin/activate
@@ -29,7 +29,7 @@ run_exp() {
     echo "=========================================================="
     echo " Launching: $cfg"
     echo "=========================================================="
-    python -m toxifusionnet.cli train --config "$cfg"
+    python -m sarc_fusenet.cli train --config "$cfg"
 }
 
 run_cv_exp() {
@@ -40,7 +40,7 @@ run_cv_exp() {
     echo "=========================================================="
     echo " Launching 5-Fold Grouped CV: $cfg -> $out (batch_size=$bs)"
     echo "=========================================================="
-    python -m toxifusionnet.cli cv --config "$cfg" \
+    python -m sarc_fusenet.cli cv --config "$cfg" \
         --override train.batch_size=$bs \
         --data data/processed/multibully.csv \
         --folds-cache data/processed/multibully_v2_cv_folds.csv \
@@ -55,7 +55,7 @@ case "$EXP" in
         ;;
     cv_e1d_cleaned)
         echo "Launching E1d on Curated Cleaned MultiBully dataset..."
-        python -m toxifusionnet.cli cv --config configs/exp1d_multibully_cleaned.yaml \
+        python -m sarc_fusenet.cli cv --config configs/exp1d_multibully_cleaned.yaml \
             --data data/cleaned/multibully_cleaned.csv \
             --folds-cache data/cleaned/multibully_v2_cv_folds.csv \
             --out-dir results/v3_journal_final/e1d_cleaned \
@@ -64,7 +64,7 @@ case "$EXP" in
         ;;
     cv_e1d_hingroberta_cleaned)
         echo "Launching E1d on Curated Cleaned MultiBully dataset with L3Cube HingRoBERTa..."
-        python -m toxifusionnet.cli cv --config configs/exp1d_hingroberta_cleaned.yaml \
+        python -m sarc_fusenet.cli cv --config configs/exp1d_hingroberta_cleaned.yaml \
             --data data/cleaned/multibully_cleaned.csv \
             --folds-cache data/cleaned/multibully_v2_cv_folds.csv \
             --out-dir results/v3_journal_final/e1d_hingroberta_cleaned \
@@ -73,7 +73,7 @@ case "$EXP" in
         ;;
     cv_e6b)
         echo "Launching E6b with auxiliary HOT gold (train-only)..."
-        python -m toxifusionnet.cli cv --config configs/exp6b_combined_text_gold_weighted.yaml \
+        python -m sarc_fusenet.cli cv --config configs/exp6b_combined_text_gold_weighted.yaml \
             --data data/processed/multibully.csv \
             --aux-data data/processed/hot_gold_only.csv \
             --folds-cache data/processed/multibully_v2_cv_folds.csv \
@@ -83,7 +83,7 @@ case "$EXP" in
         ;;
     cv_e6b_cleaned)
         echo "Launching E6b on Curated Cleaned Combined MultiBully + HOT dataset..."
-        python -m toxifusionnet.cli cv --config configs/exp6b_combined_cleaned.yaml \
+        python -m sarc_fusenet.cli cv --config configs/exp6b_combined_cleaned.yaml \
             --data data/cleaned/multibully_cleaned.csv \
             --aux-data data/cleaned/hot_cleaned.csv \
             --folds-cache data/cleaned/multibully_v2_cv_folds.csv \
@@ -98,7 +98,7 @@ case "$EXP" in
         ;;
     smoke)
         echo "Running pre-flight smoke test..."
-        python -m toxifusionnet.cli train --config configs/smoke_test.yaml
+        python -m sarc_fusenet.cli train --config configs/smoke_test.yaml
         ;;
     cv_e1)
         run_cv_exp configs/exp1_multibully_text.yaml results/v2_evaluation/e1_text

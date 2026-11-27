@@ -7,10 +7,10 @@ import pytest
 import torch
 import torch.nn.functional as F
 
-from toxifusionnet.config import Config
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
-from toxifusionnet.models.clip import build_clip_vision
-from toxifusionnet.models.clip_cache import (
+from sarc_fusenet.config import Config
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
+from sarc_fusenet.models.clip import build_clip_vision
+from sarc_fusenet.models.clip_cache import (
     CachedClipFeatureStore,
     build_or_load_clip_cache,
     get_cache_signature,
@@ -59,7 +59,7 @@ def test_clip_cached_feature_numerical_parity():
     })
 
     encoder = DummyTinyEncoder(d=64)
-    model = ToxiFusionNet(encoder, model_cfg).to(device)
+    model = SARCFuseNet(encoder, model_cfg).to(device)
     model.eval()
 
     # Inputs: batch of 4 (2 with images, 2 without images)
@@ -115,7 +115,7 @@ def test_cached_clip_feature_store():
 
 def test_clip_cache_signature():
     """Verify that get_cache_signature produces deterministic signatures containing model weights and preprocessing info."""
-    from toxifusionnet.models.clip_cache import get_cache_signature
+    from sarc_fusenet.models.clip_cache import get_cache_signature
 
     # Signature with model name only
     sig1 = get_cache_signature(model_name="openai/clip-vit-base-patch32", image_size=224)
@@ -139,7 +139,7 @@ def test_clip_cache_signature():
 def test_real_pretrained_clip_cached_vs_uncached_and_benchmark():
     """Test real pretrained CLIP ViT-B/32 numerical parity with valid and missing images, and benchmark runtime."""
     from transformers import CLIPVisionModel, CLIPImageProcessor
-    from toxifusionnet.models.clip_cache import benchmark_clip_caching
+    from sarc_fusenet.models.clip_cache import benchmark_clip_caching
 
     try:
         vision_model = CLIPVisionModel.from_pretrained("openai/clip-vit-base-patch32")
@@ -166,7 +166,7 @@ def test_real_pretrained_clip_cached_vs_uncached_and_benchmark():
     })
 
     encoder = DummyTinyEncoder(d=64)
-    model = ToxiFusionNet(encoder, model_cfg).to(device)
+    model = SARCFuseNet(encoder, model_cfg).to(device)
     # Replace internal vision model with preloaded model
     model.clip_vision = vision_model.to(device)
     model.clip_processor = processor

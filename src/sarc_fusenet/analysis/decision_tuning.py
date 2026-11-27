@@ -1,4 +1,4 @@
-"""Leakage-Safe Validation-Only Decision Tuning for ToxiFusionNet.
+"""Leakage-Safe Validation-Only Decision Tuning for SARCFuseNet.
 
 Key Principles:
 1. Validation-Only Selection:
@@ -45,7 +45,7 @@ from ..training.stats import (
     paired_group_permutation_test,
 )
 
-log = logging.getLogger("toxifusionnet.analysis.decision_tuning")
+log = logging.getLogger("sarc_fusenet.analysis.decision_tuning")
 
 DEFAULT_MIN_SUPPORT = 20  # Minimum validation instances required per class for reliable adjustment
 
@@ -651,7 +651,7 @@ def _format_decision_tuning_markdown_report(results: dict[str, Any]) -> str:
     h_pool = hate["pooled_out_of_fold"]
 
     lines = [
-        f"# ToxiFusionNet: Decision-Tuning Evaluation Report ({exp_name})",
+        f"# SARCFuseNet: Decision-Tuning Evaluation Report ({exp_name})",
         "",
         "**Protocol:** Leakage-Safe Validation-Only Decision Tuning across 5-Fold Cross-Validation on MultiBully ($N = 5,718$ held-out test predictions).  ",
         "**Leakage Prevention Guarantee:** All decision thresholds and class adjustments were selected strictly from internal validation folds (`preds_val.csv`). Outer test partitions (`preds_test.csv`) were never exposed during hyperparameter or threshold search.",
@@ -812,7 +812,7 @@ def _format_decision_tuning_markdown_report(results: dict[str, Any]) -> str:
         "   - **Strict Isolation:** Original predictions, checkpoints, and outer test partitions (`preds_test.csv`) were never exposed during hyperparameter search, threshold selection, or model selection.",
         "",
         "---",
-        "*Report generated automatically by `toxifusionnet.analysis.decision_tuning.run_full_decision_tuning_experiment`.*"
+        "*Report generated automatically by `sarc_fusenet.analysis.decision_tuning.run_full_decision_tuning_experiment`.*"
     ])
 
     return "\n".join(lines)

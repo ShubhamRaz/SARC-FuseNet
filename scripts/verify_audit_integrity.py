@@ -1,4 +1,4 @@
-"""Comprehensive scientific validation and data-integrity audit for ToxiFusionNet."""
+"""Comprehensive scientific validation and data-integrity audit for SARCFuseNet."""
 import json
 import os
 import sys
@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 from PIL import Image
 
-from toxifusionnet.data.grouped_splits import normalize_ocr_text
+from sarc_fusenet.data.grouped_splits import normalize_ocr_text
 
 
 def audit_fold_cache(cache_path="data/processed/multibully_v2_cv_folds.csv"):

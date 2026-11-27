@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from toxifusionnet.training.stats import (
+from sarc_fusenet.training.stats import (
     fast_macro_f1,
     paired_group_permutation_test,
     paired_group_bootstrap,
@@ -219,7 +219,7 @@ def test_class_level_metrics_rare_class():
 
 def test_compare_predictions_end_to_end(tmp_path):
     """Verify that compare_predictions runs permutation tests, bootstrap CIs, McNemar, and class metrics."""
-    from toxifusionnet.experiments.compare import compare_predictions
+    from sarc_fusenet.experiments.compare import compare_predictions
 
     # Create synthetic pooled prediction frames
     n = 120
@@ -286,7 +286,7 @@ def test_compare_predictions_end_to_end(tmp_path):
 
 def test_run_publication_analysis_pipeline(tmp_path):
     """Verify run_publication_analysis end-to-end: 2 contrasts, 8-test Holm correction, JSON, CSV, and Markdown."""
-    from toxifusionnet.experiments.compare import run_publication_analysis
+    from sarc_fusenet.experiments.compare import run_publication_analysis
 
     n = 100
     ids = [f"sample_{i}.jpg" for i in range(n)]
@@ -364,7 +364,7 @@ def test_publication_report_formatting_and_scientific_nuance():
     """Verify that p-values are properly formatted (<0.0001, no 0.0000), secondary analyses are labelled,
     and cautious scientific conclusions are maintained."""
     from pathlib import Path
-    from toxifusionnet.experiments.compare import _format_p_value
+    from sarc_fusenet.experiments.compare import _format_p_value
 
     # 1. Test p-value formatting helper
     assert _format_p_value(0.0) == "<0.0001"

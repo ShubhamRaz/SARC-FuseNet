@@ -17,7 +17,7 @@ import pandas as pd
 import torch
 from PIL import Image
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 def hash_image_file(path: str | Path) -> str:

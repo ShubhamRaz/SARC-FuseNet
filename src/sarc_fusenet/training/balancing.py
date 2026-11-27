@@ -15,7 +15,7 @@ import pandas as pd
 
 from ..labels import IGNORE_INDEX, LABEL_SPACES, label_to_id
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 def compute_task_class_weights(

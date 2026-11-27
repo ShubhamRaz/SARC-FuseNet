@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build the final, fully detailed, publication-grade Word report:
-ToxiFusionNet_Report1_Final_Professional.docx
+SARCFuseNet_Report1_Final_Professional.docx
 
 Matches the exact design, formatting, typography, color palette, tables,
 KPI stat tiles, callout boxes, and charts of the sample report.
@@ -315,7 +315,7 @@ def build_final_professional_report(output_docx_path: str):
     header = sec.header
     hp = header.paragraphs[0]
     hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    hr = hp.add_run("TOXIFUSIONNET  /  EXPERIMENTAL EVALUATION REPORT")
+    hr = hp.add_run("SARC-FUSENET  /  EXPERIMENTAL EVALUATION REPORT")
     hr.font.name = "Aptos"
     hr.font.size = Pt(7.5)
     hr.font.bold = True
@@ -325,7 +325,7 @@ def build_final_professional_report(output_docx_path: str):
     footer = sec.footer
     fp = footer.paragraphs[0]
     fp.alignment = WD_ALIGN_PARAGRAPH.LEFT
-    fr1 = fp.add_run("ToxiFusionNet Comprehensive Evaluation Report  •  October 2026  |  Page ")
+    fr1 = fp.add_run("SARCFuseNet Comprehensive Evaluation Report  •  October 2026  |  Page ")
     fr1.font.name = "Aptos"
     fr1.font.size = Pt(7.5)
     fr1.font.color.rgb = RGBColor(100, 116, 139)
@@ -348,7 +348,7 @@ def build_final_professional_report(output_docx_path: str):
     p_title = doc.add_paragraph()
     p_title.paragraph_format.space_before = Pt(0)
     p_title.paragraph_format.space_after = Pt(2)
-    r_title = p_title.add_run("ToxiFusionNet: Comprehensive Accuracy & Performance Evaluation")
+    r_title = p_title.add_run("SARCFuseNet: Comprehensive Accuracy & Performance Evaluation")
     r_title.font.name = "Aptos Display"
     r_title.font.size = Pt(20)
     r_title.font.bold = True
@@ -1076,7 +1076,7 @@ def build_final_professional_report(output_docx_path: str):
         ["Data Integrity Audit", "data_integrity_report.md (Verified zero cross-dataset leakage)"],
         ["Automated Accuracy Script", "scripts/evaluate_at_accuracy.py (Interactive operating curve evaluator)"],
         ["DOCX Report Generator", "scripts/generate_docx_report.py (Reproducible report synthesis)"],
-        ["Full Git Publication Branch", "https://github.com/ShubhamRaz/toxifusionnet/tree/vivek"]
+        ["Full Git Publication Branch", "https://github.com/ShubhamRaz/sarc_fusenet/tree/vivek"]
     ]
     t_art = doc.add_table(rows=1, cols=len(t_art_cols))
     set_table_borders(t_art)
@@ -1112,7 +1112,7 @@ def build_final_professional_report(output_docx_path: str):
     p_code1.paragraph_format.space_after = Pt(0)
     r_c1 = p_code1.add_run(
         "$env:PYTHONPATH=\"src\"\n"
-        "python -m toxifusionnet.cli predict `\n"
+        "python -m sarc_fusenet.cli predict `\n"
         "    --run-dir models/multibully_cpu_full_seed42 `\n"
         "    --text \"Wah bhai wah, kya genius idea hai lol\" `\n"
         "    --target-accuracy 0.85"
@@ -1146,9 +1146,9 @@ def build_final_professional_report(output_docx_path: str):
 
     # Save to multiple targets
     targets = [
-        Path("reports/ToxiFusionNet_Report1_Final_Professional.docx"),
-        Path("D:/Research ppr/ToxiFusionNet_Report1_Final_Professional_Updated.docx"),
-        Path("D:/Research ppr/toxifusionnet_accuracy_report.docx"),
+        Path("reports/SARCFuseNet_Report1_Final_Professional.docx"),
+        Path("D:/Research ppr/SARCFuseNet_Report1_Final_Professional_Updated.docx"),
+        Path("D:/Research ppr/sarc_fusenet_accuracy_report.docx"),
         Path(output_docx_path),
     ]
     for target in targets:
@@ -1157,11 +1157,11 @@ def build_final_professional_report(output_docx_path: str):
             doc.save(str(target))
             print(f"Successfully saved report at: {target.resolve()} ({target.stat().st_size} bytes)")
         except PermissionError:
-            print(f"Notice: {target.name} is currently open in Word. Created updated copy at ToxiFusionNet_Report1_Final_Professional_Updated.docx")
+            print(f"Notice: {target.name} is currently open in Word. Created updated copy at SARCFuseNet_Report1_Final_Professional_Updated.docx")
         except Exception as e:
             print(f"Warning saving to {target}: {e}")
 
 
 if __name__ == "__main__":
-    out_path = "D:/Research ppr/ToxiFusionNet_Report1_Final_Professional.docx"
+    out_path = "D:/Research ppr/SARCFuseNet_Report1_Final_Professional.docx"
     build_final_professional_report(out_path)

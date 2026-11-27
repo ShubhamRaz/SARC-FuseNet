@@ -6,12 +6,12 @@ import pandas as pd
 import torch
 from pathlib import Path
 
-from toxifusionnet.data.schema import load_processed_csv
-from toxifusionnet.data.grouped_splits import normalize_ocr_text
-from toxifusionnet.models.clip import GatedVisionFusion
-from toxifusionnet.data.dataset import HateSarcasmDataset, make_collate
-from toxifusionnet.preprocessing.normalize import TextNormalizer
-from toxifusionnet.labels import label_to_id, IGNORE_INDEX
+from sarc_fusenet.data.schema import load_processed_csv
+from sarc_fusenet.data.grouped_splits import normalize_ocr_text
+from sarc_fusenet.models.clip import GatedVisionFusion
+from sarc_fusenet.data.dataset import HateSarcasmDataset, make_collate
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.labels import label_to_id, IGNORE_INDEX
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent

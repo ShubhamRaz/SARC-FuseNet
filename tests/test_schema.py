@@ -1,8 +1,8 @@
 import numpy as np
 import pandas as pd
 
-from toxifusionnet.data.schema import build_canonical, guess_schema
-from toxifusionnet.data.splits import make_splits
+from sarc_fusenet.data.schema import build_canonical, guess_schema
+from sarc_fusenet.data.splits import make_splits
 
 
 def raw():

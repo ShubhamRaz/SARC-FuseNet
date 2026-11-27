@@ -4,7 +4,7 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from toxifusionnet.data.grouped_splits import (
+from sarc_fusenet.data.grouped_splits import (
     _normalize_label_val,
     _sample_stratum,
     aggregate_rare_group_strata,
@@ -13,7 +13,7 @@ from toxifusionnet.data.grouped_splits import (
     make_grouped_cv_splits,
     normalize_ocr_text,
 )
-from toxifusionnet.experiments.cv import validate_fold_cache
+from sarc_fusenet.experiments.cv import validate_fold_cache
 
 
 def test_nan_and_missing_label_normalization():
@@ -329,7 +329,7 @@ def test_cv_reconstruction_with_colliding_ids(tmp_path: Path, monkeypatch):
     6. Mocked train_or_resume prevents any model training.
     """
     from scripts.generate_combined_folds import generate_combined_folds
-    from toxifusionnet.experiments.cv import run_cv
+    from sarc_fusenet.experiments.cv import run_cv
 
     # Create dataset with colliding IDs between source_a and source_b
     records = []
@@ -379,7 +379,7 @@ def test_cv_reconstruction_with_colliding_ids(tmp_path: Path, monkeypatch):
             "class_balancing": {},
         }
 
-    monkeypatch.setattr("toxifusionnet.experiments.cv.train_or_resume", mock_train_or_resume)
+    monkeypatch.setattr("sarc_fusenet.experiments.cv.train_or_resume", mock_train_or_resume)
 
     cv_out_dir = tmp_path / "cv_run_output"
     cv_metrics = run_cv(
@@ -449,7 +449,7 @@ def test_cv_reconstruction_detects_missing_cache_rows(tmp_path: Path, monkeypatc
     an inner join silently drops rows when the cache is incomplete.
     """
     from scripts.generate_combined_folds import generate_combined_folds
-    from toxifusionnet.experiments.cv import run_cv
+    from sarc_fusenet.experiments.cv import run_cv
 
     # Build a valid 60-row dataset and generate a valid fold cache
     records = []
@@ -476,7 +476,7 @@ def test_cv_reconstruction_detects_missing_cache_rows(tmp_path: Path, monkeypatc
     corrupt_cache_csv = tmp_path / "corrupt_cv_folds.csv"
     corrupted.to_csv(corrupt_cache_csv, index=False)
 
-    monkeypatch.setattr("toxifusionnet.experiments.cv.train_or_resume", lambda *a, **kw: (_ for _ in ()).throw(AssertionError("train_or_resume must not be called")))
+    monkeypatch.setattr("sarc_fusenet.experiments.cv.train_or_resume", lambda *a, **kw: (_ for _ in ()).throw(AssertionError("train_or_resume must not be called")))
 
     # Guard 1: validate_fold_cache() detects missing IDs prior to fold iteration
     with pytest.raises(ValueError, match=r"missing 5 IDs"):
@@ -492,7 +492,7 @@ def test_cv_reconstruction_detects_missing_cache_rows(tmp_path: Path, monkeypatc
 
     # Guard 2: If validate_fold_cache is bypassed, the left-merge indicator in reconstruction
     # catches the missing rows and surfaces the exact count and example keys.
-    monkeypatch.setattr("toxifusionnet.experiments.cv.validate_fold_cache", lambda *a, **kw: None)
+    monkeypatch.setattr("sarc_fusenet.experiments.cv.validate_fold_cache", lambda *a, **kw: None)
     with pytest.raises(ValueError, match=r"5 of 60 original rows had no matching fold assignment"):
         run_cv(
             config="configs/exp2_multidataset_text.yaml",

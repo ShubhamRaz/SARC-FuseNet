@@ -96,14 +96,14 @@ def validate_cleaned_datasets(base_dir: str | Path = ".") -> Dict[str, Any]:
                 f"All {len(configs_with_processed)} active configs point to 'data/processed/'. "
                 f"Training scripts will silently execute on data/processed/ instead of data/cleaned/."
             ),
-            "affected_files": ["configs/*.yaml", "src/toxifusionnet/cli.py", "scripts/run_final.sh"]
+            "affected_files": ["configs/*.yaml", "src/sarc_fusenet/cli.py", "scripts/run_final.sh"]
         }
     else:
         results["checks"]["pipeline_integration"] = {"status": "PASS", "details": "Configs reference data/cleaned/."}
 
     # Check 3: Checksum and CV Compatibility with cv.py
     try:
-        from toxifusionnet.experiments.cv import ALLOWED_FOLD_CACHE_SHAS, ALLOWED_COMBINED_FOLD_CACHE_SHAS
+        from sarc_fusenet.experiments.cv import ALLOWED_FOLD_CACHE_SHAS, ALLOWED_COMBINED_FOLD_CACHE_SHAS
     except ImportError:
         ALLOWED_FOLD_CACHE_SHAS = {
             "73d4dbb4858907f43765dea0acff36aa4ae21ddc01e1694c0fcf85791fb2d1a5",
@@ -121,12 +121,12 @@ def validate_cleaned_datasets(base_dir: str | Path = ".") -> Dict[str, Any]:
             "status": "FAIL",
             "details": (
                 f"CV fold caches in data/cleaned/ fail the authorized checksum checks in "
-                f"src/toxifusionnet/experiments/cv.py. "
+                f"src/sarc_fusenet/experiments/cv.py. "
                 f"multibully_v2_cv_folds: observed {actual_mb_sha[:16]}...; "
                 f"combined_multibully_hot_cv_folds: observed {actual_comb_sha[:16]}.... "
                 f"Running cv.py will immediately throw ValueError."
             ),
-            "responsible_lines": "src/toxifusionnet/experiments/cv.py:45-50, 255-265"
+            "responsible_lines": "src/sarc_fusenet/experiments/cv.py:45-50, 255-265"
         }
     else:
         results["checks"]["cv_checksum_compatibility"] = {

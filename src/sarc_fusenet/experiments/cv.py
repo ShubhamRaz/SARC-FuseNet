@@ -14,7 +14,7 @@ import numpy as np
 import pandas as pd
 from sklearn.model_selection import StratifiedKFold, train_test_split
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 from ..config import load_config
 from ..data.grouped_splits import assign_group_ids, audit_fold_integrity, make_grouped_cv_splits, normalize_ocr_text

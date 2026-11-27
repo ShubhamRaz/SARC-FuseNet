@@ -101,7 +101,7 @@ pip install -e .
 Test the production model using the CLI:
 
 ```powershell
-python -m toxifusionnet.cli predict `
+python -m sarc_fusenet.cli predict `
   --run-dir runs/exp_tri_dataset_xlmr `
   --text "Congrats bro, strict diet ke beech spicy golgappe ne prove kar diya ki hope pe world kayam hai" `
          "Saale ye lobby ke log itna disgusting aur pathetic harkat karta hai" `
@@ -135,7 +135,7 @@ The full test predictions, validation predictions, and training history curves a
 To re-run training on the unified tri-dataset from scratch:
 
 ```powershell
-python -m toxifusionnet.cli train --config configs/combined_all_3_datasets.yaml
+python -m sarc_fusenet.cli train --config configs/combined_all_3_datasets.yaml
 ```
 
 The configuration automatically engages GPU acceleration (CUDA with FP16 AMP) and saves checkpoints and evaluation metrics to `runs/exp_tri_dataset_xlmr/`.
@@ -145,30 +145,27 @@ The configuration automatically engages GPU acceleration (CUDA with FP16 AMP) an
 ## Directory Structure
 
 ```
-toxifusionnet/
+SARC-FuseNet/
 ├── configs/
-│   └── combined_all_3_datasets.yaml    # Production training configuration
+│   └── combined_all_3_datasets.yaml
 ├── data/
 │   └── processed/
-│       ├── combined_all_3_datasets.csv # Canonical unified 56.9k dataset
+│       ├── combined_all_3_datasets.csv
 │       └── combined_all_3_datasets.meta.json
-├── results/
-│   └── stage3_tri_dataset/             # Permanent test predictions & metrics
-│       ├── metrics.json                # Complete test evaluation metrics
-│       ├── history.csv                 # Per-epoch loss and validation metrics
-│       └── preds_test.csv              # Test prediction dump (8,513 rows)
+├── docs/
+│   └── SARC-FuseNet_Project_Report.docx
 ├── reports/
-│   ├── STAGE_3_FINAL_REPORT.md         # Comprehensive scientific evaluation report
-│   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md # Unabridged full project report
-│   └── audit/                          # 6-part scientific and audit reports
+│   ├── STAGE_3_FINAL_REPORT.md
+│   ├── SARC-FUSENET_FULL_PROJECT_REPORT.md
+│   ├── sarc-fusenet_final_tri_dataset_evaluation.txt
+│   └── audit/
+├── results/
 ├── scripts/
-│   ├── audit_metrics.py                # Reproducible test metrics verification script
-│   └── audit_by_source.py              # Disaggregated source breakdown script
 ├── src/
-│   └── toxifusionnet/                  # Core package modules
-│       ├── models/                     # SARC-FuseNet architecture & losses
-│       ├── preprocessing/              # Normalization & language identification
-│       └── training/                   # Trainer, class-balancing & metrics
-├── STAGE_3_FINAL_REPORT.md             # Comprehensive scientific report
-└── README.md                           # Master project documentation
+│   └── sarc_fusenet/
+│       └── models/
+│           └── sarc_fusenet.py
+├── tests/
+├── pyproject.toml
+└── README.md
 ```

@@ -1,18 +1,18 @@
 import pytest
 import torch
 
-from toxifusionnet.config import Config
-from toxifusionnet.labels import IGNORE_INDEX
-from toxifusionnet.models.encoder import build_encoder_and_tokenizer
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import SarcasmAwareFusion, ToxiFusionNet
+from sarc_fusenet.config import Config
+from sarc_fusenet.labels import IGNORE_INDEX
+from sarc_fusenet.models.encoder import build_encoder_and_tokenizer
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SarcasmAwareFusion, SARCFuseNet
 
 
 def make(**over):
     cfg = Config.wrap({"encoder_name": "tiny", "tiny_hidden": 32, "tiny_layers": 1, "head_hidden": 32,
                        "tasks": ["sarcasm", "hate", "target", "severity"], **over})
     enc, tok = build_encoder_and_tokenizer(cfg, [["wah", "kya", "baat", "hai"], ["tum", "log", "bekaar"]])
-    return ToxiFusionNet(enc, cfg), tok
+    return SARCFuseNet(enc, cfg), tok
 
 
 def batch(model, B=4, T=7):

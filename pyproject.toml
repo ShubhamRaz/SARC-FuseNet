@@ -3,9 +3,9 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "toxifusionnet"
+name = "sarc-fusenet"
 version = "0.1.0"
-description = "Sarcasm-aware multi-task transformer for hate speech detection in Hindi-English code-mixed text"
+description = "Sarcasm-Aware Residual Context Fusion Network for Hindi–English code-mixed hate speech, target and severity detection."
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
@@ -17,9 +17,10 @@ explain = ["lime"]
 serve = ["fastapi", "uvicorn", "httpx"]
 dev = ["pytest"]
 [project.scripts]
-toxifusion = "toxifusionnet.cli:main"
+sarc-fusenet = "sarc_fusenet.cli:main"
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["sarc_fusenet*"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = [".", "src"]

@@ -1,4 +1,4 @@
-"""SARCFuseNet: sarcasm-aware multi-task transformer for hate speech detection.
+"""SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network): sarcasm-aware multi-task transformer for hate speech detection.
 
                        +--> sarcasm attention pooling + cue features --> sarcasm head (2)
  text --> encoder --H--+                                          \\
@@ -156,5 +156,3 @@ class SARCFuseNet(nn.Module):
 
 
 # Backwards-compatible alias for existing notebooks, scripts, and checkpoints.
-# New code should use SARCFuseNet.
-ToxiFusionNet = SARCFuseNet

@@ -4,7 +4,7 @@
 
 ## 1. Architectural Component Verification Matrix
 
-We inspected the underlying PyTorch source code in [`src/toxifusionnet/models/toxifusionnet.py`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/toxifusionnet/toxifusionnet/src/toxifusionnet/models/toxifusionnet.py) and compared each component against documented claims:
+We inspected the underlying PyTorch source code in [`src/sarc_fusenet/models/sarc_fusenet.py`](file:///c:/Users/SHUBHAM%20RAJ/Desktop/Others/Toxic/SARC-FuseNet/src/sarc_fusenet/models/sarc_fusenet.py) and compared each component against documented claims:
 
 | Documented Component | Claimed Description in Reports | Actual Implementation in Code | Verification Status | Correction Required |
 | :--- | :--- | :--- | :---: | :--- |
@@ -20,7 +20,7 @@ We inspected the underlying PyTorch source code in [`src/toxifusionnet/models/to
 
 ## 2. In-Depth Analysis: Why "Cross-Attention" is Technically Inaccurate
 
-### The Code Implementation (`toxifusionnet.py`, Lines 37–54)
+### The Code Implementation (`sarc_fusenet.py`, Lines 37–54)
 ```python
 class SarcasmAwareFusion(nn.Module):
     def __init__(self, d: int):
@@ -46,11 +46,11 @@ class SarcasmAwareFusion(nn.Module):
 
 ## 3. Parameter Count & Model Geometry
 
-Directly computed from the instantiated `ToxiFusionNet` model object:
+Directly computed from the instantiated `SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network)` model object:
 
 ```text
 ======================================================
-ToxiFusionNet Model Parameters Breakdown
+SARC-FuseNet Model Parameters Breakdown
 ======================================================
 Backbone Encoder (xlm-roberta-base) : 278,043,648 parameters (98.60%)
 Task Heads & Gated Fusion Block     :   3,952,684 parameters ( 1.40%)

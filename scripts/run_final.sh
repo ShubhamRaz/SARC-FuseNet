@@ -15,7 +15,7 @@ OUT=${OUT:-runs/multibully}
 SCHEMA=${SCHEMA:-configs/schema_multibully.yaml}
 DATA=${DATA:-data/processed/multibully.csv}
 export PYTHONPATH=src
-CLI="python -m toxifusionnet.cli"
+CLI="python -m sarc_fusenet.cli"
 RUN=$OUT/full/seed${SEEDS%% *}
 ENC_OVR=(); [ -n "$ENC" ] && ENC_OVR=(model.encoder_name="$ENC")
 

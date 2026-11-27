@@ -1,4 +1,4 @@
-"""Comprehensive integration and unit test suite for ToxiFusionNet multimodal multitask pipeline."""
+"""Comprehensive integration and unit test suite for SARCFuseNet multimodal multitask pipeline."""
 import os
 from pathlib import Path
 import pytest
@@ -7,15 +7,15 @@ import pandas as pd
 import torch
 from torch.utils.data import DataLoader
 
-from toxifusionnet.data.dataset import HateSarcasmDataset, make_collate
-from toxifusionnet.labels import IGNORE_INDEX, TASKS, LABEL_SPACES, apply_label_config
-from toxifusionnet.models.clip import GatedVisionFusion, build_clip_vision
-from toxifusionnet.models.encoder import BertConfig, BertModel, train_wordpiece_tokenizer
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.models.toxifusionnet import ToxiFusionNet
-from toxifusionnet.preprocessing.normalize import TextNormalizer
-from toxifusionnet.training.metrics import evaluate_predictions, flatten_metrics
-from toxifusionnet.training.trainer import predict_loader, predictions_frame
+from sarc_fusenet.data.dataset import HateSarcasmDataset, make_collate
+from sarc_fusenet.labels import IGNORE_INDEX, TASKS, LABEL_SPACES, apply_label_config
+from sarc_fusenet.models.clip import GatedVisionFusion, build_clip_vision
+from sarc_fusenet.models.encoder import BertConfig, BertModel, train_wordpiece_tokenizer
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.models.sarc_fusenet import SARCFuseNet
+from sarc_fusenet.preprocessing.normalize import TextNormalizer
+from sarc_fusenet.training.metrics import evaluate_predictions, flatten_metrics
+from sarc_fusenet.training.trainer import predict_loader, predictions_frame
 
 
 @pytest.fixture
@@ -164,7 +164,7 @@ def test_model_forward_and_backward_text_and_clip(dummy_encoder_and_tok):
         "dropout": 0.1,
         "head_hidden": 64
     }
-    model_text = ToxiFusionNet(enc, cfg_text)
+    model_text = SARCFuseNet(enc, cfg_text)
 
     input_ids = torch.randint(0, len(tok), (3, 16))
     attn_mask = torch.ones(3, 16)
@@ -191,7 +191,7 @@ def test_model_forward_and_backward_text_and_clip(dummy_encoder_and_tok):
         "dropout": 0.1,
         "head_hidden": 64
     }
-    model_clip = ToxiFusionNet(enc, cfg_clip)
+    model_clip = SARCFuseNet(enc, cfg_clip)
     assert model_clip.use_clip is True
 
     pixel_values = torch.randn(3, 3, 224, 224)

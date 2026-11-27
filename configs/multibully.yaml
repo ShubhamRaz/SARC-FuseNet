@@ -1,5 +1,5 @@
 # Training config for the MultiBully text data  (used with configs/default.yaml as base):
-#   toxifusion train --config configs/multibully.yaml
+#   sarc-fusenet train --config configs/multibully.yaml
 experiment_name: multibully
 data:
   processed_path: data/processed/multibully.csv

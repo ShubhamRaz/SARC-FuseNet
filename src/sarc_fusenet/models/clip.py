@@ -1,4 +1,4 @@
-"""CLIP Vision encoder and cross-modal gated fusion for ToxiFusionNet."""
+"""CLIP Vision encoder and cross-modal gated fusion for SARCFuseNet."""
 from __future__ import annotations
 
 import logging
@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 from transformers import CLIPImageProcessor, CLIPVisionConfig, CLIPVisionModel
 
-log = logging.getLogger("toxifusionnet")
+log = logging.getLogger("sarc_fusenet")
 
 
 class GatedVisionFusion(nn.Module):
