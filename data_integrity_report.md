@@ -1,8 +1,8 @@
-# ToxiFusionNet: MultiBully & HOT Data-Integrity Audit Report
+# SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network): MultiBully & HOT Data-Integrity Audit Report
 
 **Audit Verdict:** `WARNING`  
 **Evaluation Date:** `2026-10-15 08:44:01 UTC`  
-**Repository:** `https://github.com/ShubhamRaz/toxifusionnet`  
+**Repository:** `https://github.com/ShubhamRaz/SARC-FuseNet`  
 
 ---
 
@@ -119,7 +119,7 @@ All critical experiment inputs, loss masks, fold caches, and split disjointness 
 
 **Zero-Supervision Row Handling:**
 - In `hot_gold_only.csv`, 1,765 rows correspond to offensive tweets where hate is masked to `NaN` and all other heads are `NaN`.
-- In `src/toxifusionnet/experiments/cv.py`, lines 123-137 automatically exclude these 1,765 zero-supervision rows upon loading.
+- In `src/sarc_fusenet/experiments/cv.py`, lines 123-137 automatically exclude these 1,765 zero-supervision rows upon loading.
 - Exactly 1,424 valid human-gold hate rows are retained in the training pool.
 - On-disk files remain strictly untouched ($N = 3,189$).
 
