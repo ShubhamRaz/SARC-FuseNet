@@ -26,8 +26,8 @@ SARC-FuseNet detects hate speech—specifically identifying nuanced and covert *
                                       │
                                       ▼
                         ┌───────────────────────────┐
-                        │ Gated Sarcasm Residual     │
-                        │ Fusion Module   │
+                        │ Gated Sarcasm Residual    │
+                        │ Fusion Module             │
                         └─────────────┬─────────────┘
                                       │
                    ┌──────────────────┼──────────────────┐
