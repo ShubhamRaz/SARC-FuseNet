@@ -16,19 +16,19 @@ import numpy as np
 import pandas as pd
 import pytest
 
-from toxifusionnet.analysis.decision_tuning import (
+from sarc_fusenet.analysis.decision_tuning import (
     DEFAULT_MIN_SUPPORT,
     check_support_sufficiency,
     evaluate_binary_task_tuning_cv,
     evaluate_multiclass_decision_guardrail,
     tune_binary_threshold,
 )
-from toxifusionnet.analysis.diagnostic import (
+from sarc_fusenet.analysis.diagnostic import (
     _format_diagnostic_markdown_report,
     compute_binary_threshold_fractions,
     compute_task_diagnostic,
 )
-from toxifusionnet.labels import IGNORE_INDEX
+from sarc_fusenet.labels import IGNORE_INDEX
 
 
 def test_tune_binary_threshold_validation_only():
