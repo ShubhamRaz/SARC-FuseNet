@@ -1,10 +1,10 @@
-# ToxiFusionNet: Complete Project Research & Engineering Report
+# SARC-FuseNet: Complete Project Research & Engineering Report
 ## Sarcasm-Aware Multi-Task Deep Learning Framework for Hate Speech Detection in Hindi-English (Hinglish) Code-Mixed Text
 
 ---
 
 **Project Lead & Author:** Senior NLP Data Engineer & Research Scientist  
-**Framework Name:** ToxiFusionNet  
+**Framework Name:** SARC-FuseNet  
 **Primary Encoder:** Multilingual XLM-RoBERTa (`FacebookAI/xlm-roberta-base`)  
 **Hardware Platform:** NVIDIA GeForce RTX 3050 6GB Laptop GPU (CUDA + FP16 AMP)  
 **Corpus Scale:** Unified Tri-Dataset Merge ($N = 56,907$ rows)  
@@ -17,7 +17,7 @@
 ## Table of Contents
 1. [Executive Summary & Abstract](#1-executive-summary--abstract)
 2. [Introduction & Problem Statement](#2-introduction--problem-statement)
-3. [ToxiFusionNet Architecture & Mathematical Formulation](#3-toxifusionnet-architecture--mathematical-formulation)
+3. [SARC-FuseNet Architecture & Mathematical Formulation](#3-toxifusionnet-architecture--mathematical-formulation)
 4. [Dataset Provenance, Evolution & Tri-Dataset Fusion](#4-dataset-provenance-evolution--tri-dataset-fusion)
 5. [Training Progression & Convergence Dynamics](#5-training-progression--convergence-dynamics)
 6. [Comprehensive Multi-Task Evaluation Scorecard](#6-comprehensive-multi-task-evaluation-scorecard)
@@ -35,7 +35,7 @@ Online hate speech and cyberbullying in multilingual and code-mixed digital comm
 2. **Severe Class Imbalance & Data Scarcity:** Code-mixed corpora often suffer from extreme skew toward dominant classes and collapse upon deduplication.
 3. **Vocabulary Bottlenecks:** Models trained on isolated single sources memorize narrow phrasing patterns and trigger false positives on innocent conversational language.
 
-To solve these interconnected challenges, we designed and deployed **ToxiFusionNet**, an end-to-end multi-task deep transformer framework. ToxiFusionNet leverages:
+To solve these interconnected challenges, we designed and deployed **SARC-FuseNet**, an end-to-end multi-task deep transformer framework. SARC-FuseNet leverages:
 - An **XLM-RoBERTa** sub-word encoder fused with a **pragmatic surface cue vector** (emojis, laughter markers, uppercase tokens, punctuation shifts).
 - A specialized **Sarcasm Detection Branch** providing conditioned semantic guidance.
 - A **Gated Sarcasm Residual Fusion Mechanism** that dynamically regulates how sarcastic representations modulate hate speech logits.
@@ -45,7 +45,7 @@ To solve these interconnected challenges, we designed and deployed **ToxiFusionN
   - Target Category (`individual`, `organization`, `community`, `society`)
   - Severity Rating (`low`, `moderate`, `high`)
 
-Trained on a unified **Tri-Dataset benchmark** ($56,907$ posts) combining multimodal memes (**MultiBully**), code-mixed tweets (**HOT**), and the extensive **Hinglish Toxic Hate dataset**, ToxiFusionNet achieves:
+Trained on a unified **Tri-Dataset benchmark** ($56,907$ posts) combining multimodal memes (**MultiBully**), code-mixed tweets (**HOT**), and the extensive **Hinglish Toxic Hate dataset**, SARC-FuseNet achieves:
 - **Composite Test Benchmark ($N = 8,513$):** **`97.14%` Mean Macro-F1**, **`0.9964` Hate AUROC**, and **`0.9943` Sarcasm AUROC** across all four multi-task objectives.
 
 ---
@@ -67,7 +67,7 @@ Rather than treating toxicity as a simplistic binary label, effective moderation
 
 ---
 
-## 3. ToxiFusionNet Architecture & Mathematical Formulation
+## 3. SARC-FuseNet Architecture & Mathematical Formulation
 
 ```
                                ┌────────────────────────────────┐
@@ -340,7 +340,7 @@ The delivery package has been completely cleaned, audited, and committed to git 
 Toxic/
 ├── TOXIFUSIONNET_FULL_PROJECT_REPORT.md           # Full technical report
 ├── STAGE_3_FINAL_REPORT.md                        # Summary report
-├── ToxiFusionNet_Project_Report.docx              # Project narrative document
+├── SARC-FuseNet_Project_Report.docx              # Project narrative document
 └── toxifusionnet/
     └── toxifusionnet/
         ├── README.md                              # Master GitHub documentation
@@ -371,4 +371,4 @@ Toxic/
 ---
 
 ### Conclusion & Final Hand-Off
-ToxiFusionNet Stage 3 successfully fulfills all academic, experimental, and engineering requirements. With **97.14% Composite Mean Macro-F1**, **0.9964 Hate AUROC**, **0.9943 Sarcasm AUROC**, robust sarcasm disentanglement, broad vocabulary generalizability, and fully reproducible one-click scripts, this repository represents a complete, verified, and deliverable state-of-the-art solution for Hinglish hate speech detection.
+SARC-FuseNet Stage 3 successfully fulfills all academic, experimental, and engineering requirements. With **97.14% Composite Mean Macro-F1**, **0.9964 Hate AUROC**, **0.9943 Sarcasm AUROC**, robust sarcasm disentanglement, broad vocabulary generalizability, and fully reproducible one-click scripts, this repository represents a complete, verified, and deliverable state-of-the-art solution for Hinglish hate speech detection.
