@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Reproducible, evidence-based curation and manifest pipeline for ToxiFusionNet.
+"""Reproducible, evidence-based curation and manifest pipeline for SARCFuseNet.
 
 Resolves:
 1. MultiBully human annotations: Restores 100% human gold labels for target and severity.
@@ -36,12 +36,12 @@ _src_dir = _repo_root / "src"
 if _src_dir.exists() and str(_src_dir) not in sys.path:
     sys.path.insert(0, str(_src_dir))
 
-from toxifusionnet.data.grouped_splits import (
+from sarc_fusenet.data.grouped_splits import (
     normalize_ocr_text,
     _sample_stratum,
     aggregate_rare_group_strata,
 )
-from toxifusionnet.labels import TASKS, label_to_id, IGNORE_INDEX
+from sarc_fusenet.labels import TASKS, label_to_id, IGNORE_INDEX
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 log = logging.getLogger("build_cleaned_pipeline")
@@ -307,7 +307,7 @@ def generate_leakage_safe_folds(
     group_fine: Dict[int, str] = {}
     group_base: Dict[int, str] = {}
 
-    from toxifusionnet.data.grouped_splits import _get_priority
+    from sarc_fusenet.data.grouped_splits import _get_priority
 
     for gid, gdf in df.groupby("group_id"):
         # Select highest-priority sample stratum to represent the entire group
@@ -431,7 +431,7 @@ def main():
     reports_dir.mkdir(parents=True, exist_ok=True)
 
     log.info("=================================================================")
-    log.info("ToxiFusionNet: Reproducible Dataset Curation & Manifest Pipeline")
+    log.info("SARCFuseNet: Reproducible Dataset Curation & Manifest Pipeline")
     log.info("=================================================================")
 
     # 1. MultiBully Cleaned
