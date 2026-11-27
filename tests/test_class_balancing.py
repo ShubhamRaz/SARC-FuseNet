@@ -7,9 +7,9 @@ import pandas as pd
 import pytest
 import torch
 
-from toxifusionnet.labels import IGNORE_INDEX, LABEL_SPACES, apply_label_config, label_to_id
-from toxifusionnet.models.losses import MultiTaskLoss
-from toxifusionnet.training.balancing import compute_fold_class_weights, compute_task_class_weights
+from sarc_fusenet.labels import IGNORE_INDEX, LABEL_SPACES, apply_label_config, label_to_id
+from sarc_fusenet.models.losses import MultiTaskLoss
+from sarc_fusenet.training.balancing import compute_fold_class_weights, compute_task_class_weights
 
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
@@ -285,7 +285,7 @@ def test_zero_supervision_auxiliary_filtering():
 
 def test_matched_optimizer_budget_logic():
     """Verify that E1c, E1d, and E6b configs specify matched budget, warmup, and disabled early stopping."""
-    from toxifusionnet.config import load_config
+    from sarc_fusenet.config import load_config
 
     cfg_e1c = load_config("configs/exp1c_multibully_text_unweighted.yaml")
     cfg_e1d = load_config("configs/exp1d_multibully_text_weighted.yaml")
@@ -327,7 +327,7 @@ def test_matched_optimizer_budget_logic():
 
 def test_fold_cache_checksum_fail_fast(tmp_path):
     """Verify fail-fast exception when fold cache checksum is invalid."""
-    from toxifusionnet.experiments.cv import CANONICAL_FOLD_CACHE_SHA256, validate_fold_cache_checksum, run_cv
+    from sarc_fusenet.experiments.cv import CANONICAL_FOLD_CACHE_SHA256, validate_fold_cache_checksum, run_cv
     canonical_path = DATA_DIR / "multibully_v2_cv_folds.csv"
 
     # 1. Valid canonical cache passes and returns canonical hash
@@ -357,8 +357,8 @@ def test_fold_cache_checksum_fail_fast(tmp_path):
 
 def test_fixed_budget_runs_complete_all_steps(tmp_path):
     """Verify that early_stopping: false completes the full step budget and loads best checkpoint."""
-    from toxifusionnet.config import load_config
-    from toxifusionnet.training.trainer import train_run
+    from sarc_fusenet.config import load_config
+    from sarc_fusenet.training.trainer import train_run
 
     # Load tiny smoke config
     cfg = load_config("configs/smoke_test.yaml")
@@ -399,8 +399,8 @@ def test_fixed_budget_runs_complete_all_steps(tmp_path):
 def test_simulated_grad_scaler_skip(monkeypatch, tmp_path):
     """Verify that a skipped GradScaler update does not advance global_step or scheduler, and training reaches budget."""
     import torch
-    from toxifusionnet.config import load_config
-    from toxifusionnet.training.trainer import train_run
+    from sarc_fusenet.config import load_config
+    from sarc_fusenet.training.trainer import train_run
 
     cfg = load_config("configs/smoke_test.yaml")
     cfg.train.epochs = 2
