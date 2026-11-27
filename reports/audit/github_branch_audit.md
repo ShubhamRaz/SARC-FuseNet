@@ -4,7 +4,7 @@
 
 ## 1. Remote & Local Repository Specification
 
-- **GitHub Repository URL:** `https://github.com/ShubhamRaz/SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network)`
+- **GitHub Repository URL:** `https://github.com/ShubhamRaz/SARC-FuseNet`
 - **Target Branch Inspected:** `feature/hinglish-balanced-dataset`
 - **Audit Execution Date:** October 20, 2026
 - **Auditor Role:** Senior ML Research Auditor & NLP Software Engineer
