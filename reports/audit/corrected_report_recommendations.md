@@ -4,7 +4,7 @@
 
 ## 1. Executive Editorial Overview
 
-To transition ToxiFusionNet from an internal engineering prototype to a defensible, publication-grade academic paper or open-source deliverable, several factual and terminological corrections must be applied across the project reports.
+To transition SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network) from an internal engineering prototype to a defensible, publication-grade academic paper or open-source deliverable, several factual and terminological corrections must be applied across the project reports.
 
 None of these corrections diminish the engineering success of the project: the multi-task model genuinely converges, the pipeline runs flawlessly, and real-world out-of-distribution text (*"Aloo paratha..."*) is correctly handled. However, rigorous peer reviewers at venues such as ACL, EMNLP, or ACM SIGIR will immediately flag metric heading confusions or exaggerated architecture claims.
 
@@ -12,7 +12,7 @@ None of these corrections diminish the engineering success of the project: the m
 
 ## 2. Essential Required Corrections by File
 
-### 2.1 Architecture Description (`README.md`, `STAGE_3_FINAL_REPORT.md`, `TOXIFUSIONNET_FULL_PROJECT_REPORT.md`)
+### 2.1 Architecture Description (`README.md`, `STAGE_3_FINAL_REPORT.md`, `SARC-FUSENET_FULL_PROJECT_REPORT.md`)
 - **Current Text:** *"Gated Sarcasm Cross-Attention Fusion Module"* / *"Gated Cross-Attention"*
 - **Audit Finding:** The code implements additive attention pooling on each sequence, followed by an element-wise gated residual LayerNorm block ($f = \text{LayerNorm}(h + g \odot \tanh(W s))$). It does **not** perform Multi-Head Cross-Attention.
 - **Recommended Text:**
@@ -37,7 +37,7 @@ None of these corrections diminish the engineering success of the project: the m
 - **Current Framing:** Reports present the $97.14\%$ Macro-F1 across the held-out test split ($N = 8,513$).
 - **Audit Finding:** The evaluation protocol uses stratified, zero-leakage splits across all 56.9k posts.
 - **Framing Specification:**
-  > *"When evaluated on the unified held-out test set ($N = 8,513$), ToxiFusionNet achieves a Mean Macro-F1 of $97.14\%$, Hate AUROC of $0.9964$, and Sarcasm AUROC of $0.9943$, delivering robust multi-task classification across all four objectives."*
+  > *"When evaluated on the unified held-out test set ($N = 8,513$), SARC-FuseNet achieves a Mean Macro-F1 of $97.14\%$, Hate AUROC of $0.9964$, and Sarcasm AUROC of $0.9943$, delivering robust multi-task classification across all four objectives."*
 
 ---
 
