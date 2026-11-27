@@ -16,13 +16,13 @@ from ..config import Config
 from ..data.dataset import encode_words
 from ..labels import LABEL_SPACES, apply_label_config
 from ..models.encoder import rebuild_encoder_from_dir
-from ..models.toxifusionnet import ToxiFusionNet
+from ..models.toxifusionnet import SARCFuseNet
 from ..preprocessing.features import cue_vector
 from ..preprocessing.normalize import TextNormalizer
 
 
 class ToxiFusionPipeline:
-    def __init__(self, model: ToxiFusionNet, tokenizer, normalizer: TextNormalizer, max_length: int = 128,
+    def __init__(self, model: SARCFuseNet, tokenizer, normalizer: TextNormalizer, max_length: int = 128,
                  device="cpu", hate_threshold: float = 0.5, sarcasm_threshold: float = 0.5,
                  confidence_margin: float = 0.0):
         self.model = model.to(device).eval()
@@ -38,7 +38,7 @@ class ToxiFusionPipeline:
         cfg = Config.wrap(ckpt["cfg"])
         apply_label_config(cfg.get("labels"))
         encoder, tok = rebuild_encoder_from_dir(run_dir)
-        model = ToxiFusionNet(encoder, cfg.model)
+        model = SARCFuseNet(encoder, cfg.model)
         model.load_state_dict(ckpt["state_dict"])
         return cls(model, tok, TextNormalizer.from_config(cfg.preprocess), int(cfg.data.max_length), device, **kw)
 
