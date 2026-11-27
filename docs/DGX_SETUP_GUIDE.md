@@ -1,7 +1,7 @@
-# SARC-FuseNet: NVIDIA DGX H100 Pod Execution & Reproducibility Guide
+# SARC-FuseNet (Sarcasm-Aware Residual Context Fusion Network): NVIDIA DGX H100 Pod Execution & Reproducibility Guide
 
 **Target Hardware:** NVIDIA DGX H100 (8x H100 80GB SXM5, PCIe Gen5, Ubuntu 22.04 LTS / CUDA 12.x)  
-**Repository:** `https://github.com/ShubhamRaz/toxifusionnet.git`  
+**Repository:** `https://github.com/ShubhamRaz/SARC-FuseNet.git`  
 **Author:** Senior ML Data Engineer & Research Scientist  
 
 ---
@@ -13,7 +13,7 @@
 > Always link your runs directory to a persistent network volume (e.g. `/workspace`, `/mnt/storage`, or an S3/GCS bucket).
 
 ### Directory Configuration
-- **Repository Location:** `/workspace/toxifusionnet`
+- **Repository Location:** `/workspace/sarc_fusenet`
 - **Persistent Data & Artifact Store:** `/workspace/persistent_storage`
 - **Scratch / Temp Directory:** `/tmp/scratch`
 
@@ -28,8 +28,8 @@
 cd /workspace
 
 # Clone the repository
-git clone https://github.com/ShubhamRaz/toxifusionnet.git
-cd toxifusionnet
+git clone https://github.com/ShubhamRaz/SARC-FuseNet.git
+cd sarc_fusenet
 
 # Checkout the published reproducible release branch
 git checkout main
@@ -106,10 +106,10 @@ Run a fast, 1-epoch smoke test to verify forward/backward passes and metric logg
 
 ```bash
 # Smoke test on synthetic pipeline
-python3 -m toxifusionnet.cli train --config configs/smoke_test.yaml
+python3 -m sarc_fusenet.cli train --config configs/smoke_test.yaml
 
 # Smoke test on small MultiBully subset
-python3 -m toxifusionnet.cli train --config configs/smoke_multibully.yaml
+python3 -m sarc_fusenet.cli train --config configs/smoke_multibully.yaml
 ```
 
 ---
@@ -120,7 +120,7 @@ python3 -m toxifusionnet.cli train --config configs/smoke_multibully.yaml
 Full 5-fold cross-validation on canonical MultiBully:
 
 ```bash
-python3 -m toxifusionnet.cli cv \
+python3 -m sarc_fusenet.cli cv \
     --config configs/exp1d_multibully_text_weighted.yaml \
     --data data/processed/multibully.csv \
     --folds-cache data/processed/multibully_v2_cv_folds.csv \
@@ -133,7 +133,7 @@ python3 -m toxifusionnet.cli cv \
 Full 5-fold cross-validation with auxiliary HOT text injected strictly into train partitions:
 
 ```bash
-python3 -m toxifusionnet.cli cv \
+python3 -m sarc_fusenet.cli cv \
     --config configs/exp6b_combined_text_gold_weighted.yaml \
     --data data/processed/multibully.csv \
     --aux-data data/processed/hot_gold_only.csv \
@@ -146,7 +146,7 @@ python3 -m toxifusionnet.cli cv \
 ### Multimodal Experiments (CLIP ViT-B/32 + Text Transformer)
 ```bash
 # E3: Multimodal MultiBully
-python3 -m toxifusionnet.cli cv \
+python3 -m sarc_fusenet.cli cv \
     --config configs/exp3_multibully_clip.yaml \
     --data data/processed/multibully.csv \
     --folds-cache data/processed/multibully_v2_cv_folds.csv \
@@ -169,8 +169,8 @@ cp -r results/v3_journal_final /workspace/persistent_storage/published_results/$
 cp data/manifests/*.json /workspace/persistent_storage/published_results/$(date +%Y%m%d)_dgx_run/
 
 # 2. If using S3 / GCS, sync immediately
-# aws s3 sync /workspace/persistent_storage/ s3://my-toxifusionnet-bucket/runs/ --exclude "*.tmp"
-# rsync -avz /workspace/persistent_storage/ user@headnode:/shared/toxifusionnet_results/
+# aws s3 sync /workspace/persistent_storage/ s3://my-sarc_fusenet-bucket/runs/ --exclude "*.tmp"
+# rsync -avz /workspace/persistent_storage/ user@headnode:/shared/sarc_fusenet_results/
 
 echo "Synchronization complete. Pod may now be safely decommissioned."
 ```
