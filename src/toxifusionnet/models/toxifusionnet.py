@@ -1,4 +1,4 @@
-"""ToxiFusionNet: sarcasm-aware multi-task transformer for hate speech detection.
+"""SARCFuseNet: sarcasm-aware multi-task transformer for hate speech detection.
 
                        +--> sarcasm attention pooling + cue features --> sarcasm head (2)
  text --> encoder --H--+                                          \\
@@ -57,7 +57,7 @@ def _mlp(i: int, h: int, o: int, p: float) -> nn.Sequential:
     return nn.Sequential(nn.Linear(i, h), nn.GELU(), nn.Dropout(p), nn.Linear(h, o))
 
 
-class ToxiFusionNet(nn.Module):
+class SARCFuseNet(nn.Module):
     def __init__(self, encoder: nn.Module, cfg):
         super().__init__()
         self.encoder = encoder
