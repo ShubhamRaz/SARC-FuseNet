@@ -1,4 +1,4 @@
-TOXIFUSIONNET — STAGE 3 TRI-DATASET FINAL TEST EVALUATION
+SARC-FUSENET — STAGE 3 TRI-DATASET FINAL TEST EVALUATION
 Model Run: runs/exp_tri_dataset_xlmr (XLM-RoBERTa + Gated Sarcasm Residual Fusion)
 Training Dataset: data/processed/combined_all_3_datasets.csv (N=56,907)
 Test Split Rows: 8,513
