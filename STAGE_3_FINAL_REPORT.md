@@ -1,8 +1,8 @@
-# ToxiFusionNet: Stage 3 Final Engineering & Research Report
+# SARC-FuseNet: Stage 3 Final Engineering & Research Report
 ## Tri-Dataset Multi-Task Sarcasm-Aware Hate Speech Detection in Code-Mixed Hinglish
 
 - **Evaluation Date:** October 20, 2026
-- **Architecture:** ToxiFusionNet (Backbone: `xlm-roberta-base`, Gated Sarcasm Residual Fusion)
+- **Architecture:** SARC-FuseNet (Backbone: `xlm-roberta-base`, Gated Sarcasm Residual Fusion)
 - **Unified Corpus:** Tri-Dataset Merge ($N = 56,907$)
 - **Active Git Branch:** `feature/hinglish-balanced-dataset`
 - **Model Checkpoint:** `runs/exp_tri_dataset_xlmr/model.pt`
@@ -13,7 +13,7 @@
 
 ## 1. Executive Summary
 
-This report documents the final experimental results and evaluation of **ToxiFusionNet** trained on the unified **Tri-Dataset Merge** ($N = 56,907$). 
+This report documents the final experimental results and evaluation of **SARC-FuseNet** trained on the unified **Tri-Dataset Merge** ($N = 56,907$). 
 
 Previous iterations revealed critical trade-offs:
 1. **Stage 1 (Single-Dataset Baseline):** Relied strictly on MultiBully meme OCR text, exhibiting constrained coverage on conditional sub-tasks (severity and target F1 ~ 37%).
